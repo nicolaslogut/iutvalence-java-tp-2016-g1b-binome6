@@ -1,21 +1,19 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * The fr.iutvalence.logutamilhaud.battleship.Battleship class
- * @author logutn
+ * TODO.
  *
+ * @author TODO
+ * @version TODO
  */
-public class Battleship
-{
-	/**
-	 * The main fonction witch can run the game
-	 * @param args
-	 */
-	public static void main(String[] args)
-	{
-		Game game = new Game("Truc", "Bidule");
-		game.run();
-
-	}
-
+public class Battleship {
+    /**
+     * Run the game.
+     *
+     * @param args Useless
+     */
+    public static void main(String[] args) {
+        Game game = new Game("Truc", "Bidule");
+        game.run();
+    }
 }

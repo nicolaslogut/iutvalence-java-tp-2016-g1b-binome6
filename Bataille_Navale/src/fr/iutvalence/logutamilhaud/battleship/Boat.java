@@ -1,39 +1,29 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * The fr.iutvalence.logutamilhaud.battleship.Boat class
- * @author logutn
+ * TODO.
  *
+ * @author TODO
+ * @version TODO
  */
-public class Boat
-{
-	/**
-	 * The type of boat
-	 */
+public class Boat {
+	/** Type of the boat. */
 	public final char boatType;
-	
-	/**
-	 * The size of boat
-	 */
+	/** Size of the boat. */
 	public final int size;
-	
-	/**
-	 * The life of boat
-	 */
+	/** The life of the boat.  */
 	public int life;
-	
-	/**
-	 * The id of boat
-	 */
+	// TODO What is it?
+	/** The id of boat. */
 	public char id;
 	
 	/**
-	 * This allow us to create a boat
+	 * Create a boat TODO
 	 * 
-	 * @param boatType
-	 * @param size
-	 * @param id
-	 * @param nbLife
+	 * @param boatType TODO
+	 * @param size TODO
+	 * @param id TODO
+	 * @param nbLife TODO
 	 */
 	public Boat(char boatType, int size, char id, int nbLife)
 	{
@@ -42,41 +32,4 @@ public class Boat
 		this.life=nbLife;	
 		this.id=id;
 	}
-
-	/**
-	 * 
-	 * @return life
-	 */
-	public int getLife()
-	{
-		return life;
-	}
-	
-	/**
-	 * @return id
-	 */
-	public char getId()
-	{
-		return id;
-	}
-
-	/**
-	 * 
-	 * @return boatType
-	 */
-	public char getBoatType()
-	{
-		return boatType;
-	}
-
-	/**
-	 * 
-	 * @return size
-	 */
-	public int getLength()
-	{
-		return size;
-	}
-	
-	
 }

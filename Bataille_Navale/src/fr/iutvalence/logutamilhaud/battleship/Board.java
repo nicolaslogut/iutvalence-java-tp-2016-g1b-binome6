@@ -1,115 +1,98 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * The fr.iutvalence.logutamilhaud.battleship.Board class
- * @author logutn
+ * TODO.
  *
+ * @author TODO
+ * @version TODO
  */
-public class Board
-{
-	/**
-	 * a grid of characters 
-	 */
-	public char[][] grid;
-	
-	/**
-	 * 
-	 */
-	public Board() {
-		initGrid();
-	}
+public class Board {
+    /** TODO. */
+    public char[][] grid;
 
-	public void initGrid()
-	{
-		for(int i=0;i<10;i++)
-		{
-			for(int j=0;j<10;j++)
-			{
-				grid[i][j]='v';
-			}
-		}
-	}
+    // TODO WARNING! You use a lot of "magic" constants
 
-	public boolean putABoat(Boat ship, int x, int y, char orientation)
-	{
-		int i;
+    /** TODO. */
+    public Board() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                grid[i][j] = 'v';
+            }
+        }
+    }
 
-		if(grid[x][y]!='v')
-		{
-			return false;
-		}
+    // TODO This algorithm is buggy
+    // TODO It's too early for this kind of implementation
 
-		if(orientation=='r')
-		{
-			for(i=x;i<(ship.size+x);i++)
-			{
-				if(grid[i][y]!='v')
-				{
-					return false;
-				}
-				else
-				{
-					for(i=x;i<(ship.size+x);i++)
-					{
-						grid[i][y]=ship.id;
-					}
-				}
-			}
-		}
-		if(orientation=='b')
-		{
-			for(i=y;i<(ship.size-y);i--)
-			{
-				if(grid[x][i]!='v')
-				{
-					return false;
-				}
-				else
-				{
-					for(i=y;i<(ship.size-y);i--)
-					{
-						grid[x][i]=ship.id;
-					}
-				}
-			}
-		}
-		if(orientation=='l')
-		{
-			for(i=x;i<(ship.size-x);i--)
-			{
-				if(grid[i][y]!='v')
-				{
-					return false;
-				}
-				else
-				{
-					for(i=x;i<(ship.size-x);i--)
-					{
-						grid[i][y]=ship.id;
-					}
-				}
-			}
-		}
-		if(orientation=='t')
-		{
-			for(i=x;i<(ship.size+x);i++)
-			{
-				if(grid[x][i]!='v')
-				{
-					return false;
-				}
-				else
-				{
-					for(i=x;i<(ship.size+x);i++)
-					{
-						grid[x][i]=ship.id;
-					}
-				}
-			}
-		}
+    /**
+     * TODO.
+     *
+     * @param ship        TODO
+     * @param x           TODO
+     * @param y           TODO
+     * @param orientation TODO
+     *
+     * @return TODO
+     */
+    public boolean putABoat(Boat ship, int x, int y, char orientation) {
 
-		return false;
+        if (grid[x][y] != 'v') {
+            return false;
+        }
 
+        int i;
+        // TODO Why don't you use switch?
+        // TODO Why don't use an "enum" for orientation rather than a char?
+        // TODO You can factorize these cases (I think)
+        if (orientation == 'r') {
+            for (i = x; i < (ship.size + x); i++) {
+                if (grid[i][y] == 'v') {
+                    for (i = x; i < (ship.size + x); i++) {
+                        grid[i][y] = ship.id;
+                    }
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+        if (orientation == 'b') {
+            for (i = y; i < (ship.size - y); i--) {
+                if (grid[x][i] == 'v') {
+                    for (i = y; i < (ship.size - y); i--) {
+                        grid[x][i] = ship.id;
+                    }
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+        if (orientation == 'l') {
+            for (i = x; i < (ship.size - x); i--) {
+                if (grid[i][y] == 'v') {
+                    for (i = x; i < (ship.size - x); i--) {
+                        grid[i][y] = ship.id;
+                    }
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+        if (orientation == 't') {
+            for (i = x; i < (ship.size + x); i++) {
+                if (grid[x][i] == 'v') {
+                    for (i = x; i < (ship.size + x); i++) {
+                        grid[x][i] = ship.id;
+                    }
+                }
+                else {
+                    return false;
+                }
+            }
+        }
 
-	}
+        return false;
+    }
 }
