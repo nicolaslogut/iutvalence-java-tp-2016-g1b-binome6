@@ -1,5 +1,7 @@
+package fr.iutvalence.logutamilhaud.battleship;
+
 /**
- * The Battleship class 
+ * The fr.iutvalence.logutamilhaud.battleship.Battleship class
  * @author logutn
  *
  */

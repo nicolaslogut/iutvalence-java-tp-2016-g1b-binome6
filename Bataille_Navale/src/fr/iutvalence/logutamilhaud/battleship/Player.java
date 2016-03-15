@@ -1,3 +1,4 @@
+package fr.iutvalence.logutamilhaud.battleship;
 
 public class Player
 {
