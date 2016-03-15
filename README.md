@@ -1,6 +1,5 @@
-# iutvalence-java-tp-2016-g1b-binome6
-bataille navale
-https://fr.wikipedia.org/wiki/Bataille_navale_%28jeu%29
+# Battleship
 
+**Rules:** http://www.wikiwand.com/fr/Bataille_navale_(jeu)
 
-by LOGUT and AMILHAUD
+_by LOGUT and AMILHAUD._
