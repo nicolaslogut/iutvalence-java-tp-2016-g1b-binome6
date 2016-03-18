@@ -1,19 +1,18 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * TODO.
+ * Player for the game
  *
- * @author TODO
- * @version TODO
+ * @author logut
+ * @version 18/03
  */
 public class Player {
-	/** TODO. */
+	/** Name of player. */
 	private String name;
 
 	/**
-	 * TODO.
-	 *
-	 * @param name TODO
+	 * Initialize the name of a player.
+	 * @param name name of a player
      */
 	public Player(String name) {
 		this.name = name;

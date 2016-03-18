@@ -1,10 +1,10 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * TODO.
+ * Main of the application..
  *
- * @author TODO
- * @version TODO
+ * @author logut
+ * @version 18/03
  */
 public class Battleship {
     /**

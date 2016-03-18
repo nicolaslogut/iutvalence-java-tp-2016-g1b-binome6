@@ -1,22 +1,27 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * TODO.
- *
- * @author TODO
- * @version TODO
+ * Board of the game.
+ * 
+ * @author logut
+ * @version 18/03
  */
 public class Board {
-    /** TODO. */
+    /** Board who represent the grid of the game. */
     public char[][] grid;
-
-    // TODO WARNING! You use a lot of "magic" constants
-
-    /** TODO. */
+    /** Number of ligne of the board. */
+    private final static int NB_LINE=10;
+    /** Number of column of the board. */
+    private final static int NB_COLUMN=10;
+    /** Symbol of an empty case. */
+    private final static char EMPTY_SLOT='V';
+    
+    
+    /** Initialize of the grid for the game. */
     public Board() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                grid[i][j] = 'v';
+        for (int i = 0; i < NB_LINE; i++) {
+            for (int j = 0; j < NB_COLUMN; j++) {
+                grid[i][j] = EMPTY_SLOT;
             }
         }
     }
@@ -25,21 +30,39 @@ public class Board {
     // TODO It's too early for this kind of implementation
 
     /**
-     * TODO.
+     * Place a boat on the board.
      *
-     * @param ship        TODO
-     * @param x           TODO
-     * @param y           TODO
-     * @param orientation TODO
+     * @param ship the boat that we want to place. 
+     * @param x position on x of the boat.
+     * @param y position on y of the boat.
+     * @param orientation orientation of the boat.
      *
-     * @return TODO
+     * @return boolean true if the boat is on the board false if it's not possible.
      */
-    public boolean putABoat(Boat ship, int x, int y, char orientation) {
+    public boolean putABoat(Boat ship, int x, int y, Orientation ori) {
 
-        if (grid[x][y] != 'v') {
+        if (grid[x][y] !=EMPTY_SLOT) {
             return false;
         }
-
+        
+        switch(ori)
+        {
+        	case RIGHT:
+        		        		
+        	case LEFT:
+        		
+        	case TOP:
+        		
+        	case BOTTOM:
+        		
+        }
+        
+        
+        
+        
+      /* old code that gonna be remove later */
+        
+        
         int i;
         // TODO Why don't you use switch?
         // TODO Why don't use an "enum" for orientation rather than a char?

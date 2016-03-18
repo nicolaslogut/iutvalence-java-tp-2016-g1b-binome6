@@ -1,10 +1,10 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * TODO.
+ * Boat of the game.
  *
- * @author TODO
- * @version TODO
+ * @author logut
+ * @version 18/03
  */
 public class Boat {
 	/** Type of the boat. */
@@ -13,17 +13,16 @@ public class Boat {
 	public final int size;
 	/** The life of the boat.  */
 	public int life;
-	// TODO What is it?
-	/** The id of boat. */
+	/** The id of boat(destoyer ("d"), boat("b"), ..... */
 	public char id;
 	
 	/**
-	 * Create a boat TODO
+	 * Create a boat.
 	 * 
-	 * @param boatType TODO
-	 * @param size TODO
-	 * @param id TODO
-	 * @param nbLife TODO
+	 * @param boatType type of the boat.
+	 * @param size size of the boat.
+	 * @param id id of the boat.
+	 * @param nbLife how much shot the boat can take before sinking.
 	 */
 	public Boat(char boatType, int size, char id, int nbLife)
 	{
