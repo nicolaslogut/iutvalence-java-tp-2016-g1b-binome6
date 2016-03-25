@@ -4,7 +4,7 @@ package fr.iutvalence.logutamilhaud.battleship;
  * Player for the game
  *
  * @author logut
- * @version 18/03
+ * @version 25/03
  */
 public class Player {
 	/** Name of player. */

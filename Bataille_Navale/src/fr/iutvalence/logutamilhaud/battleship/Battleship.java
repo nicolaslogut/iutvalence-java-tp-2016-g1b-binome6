@@ -4,7 +4,7 @@ package fr.iutvalence.logutamilhaud.battleship;
  * Main of the application..
  *
  * @author logut
- * @version 18/03
+ * @version 25/03
  */
 public class Battleship {
     /**

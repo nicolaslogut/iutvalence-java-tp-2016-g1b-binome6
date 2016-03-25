@@ -4,7 +4,7 @@ package fr.iutvalence.logutamilhaud.battleship;
  * Board of the game.
  * 
  * @author logut
- * @version 18/03
+ * @version 25/03
  */
 public class Board {
     /** Board who represent the grid of the game. */
@@ -26,96 +26,49 @@ public class Board {
         }
     }
 
-    // TODO This algorithm is buggy
-    // TODO It's too early for this kind of implementation
-
     /**
      * Place a boat on the board.
      *
      * @param ship the boat that we want to place. 
-     * @param x position on x of the boat.
-     * @param y position on y of the boat.
+     * @param oX position on x of the boat.
+     * @param oY position on y of the boat.
      * @param orientation orientation of the boat.
      *
      * @return boolean true if the boat is on the board false if it's not possible.
      */
-    public boolean putABoat(Boat ship, int x, int y, Orientation ori) {
-
-        if (grid[x][y] !=EMPTY_SLOT) {
+    public boolean putABoat(Boat ship, int oX, int oY, Orientation ori) 
+    {
+    	/** delta of shift in x */
+        int dX = ori.dX();
+        /** delta of shift in y */
+        int dY = ori.dY();
+        /** increment of the first loop */
+        int i;
+        /** increment of the second loop */
+        int j;
+        
+        
+        if (grid[oX][oY] !=EMPTY_SLOT) 
+        {
             return false;
         }
         
-        switch(ori)
-        {
-        	case RIGHT:
-        		        		
-        	case LEFT:
-        		
-        	case TOP:
-        		
-        	case BOTTOM:
-        		
-        }
-        
-        
-        
-        
-      /* old code that gonna be remove later */
-        
-        
-        int i;
-        // TODO Why don't you use switch?
-        // TODO Why don't use an "enum" for orientation rather than a char?
-        // TODO You can factorize these cases (I think)
-        if (orientation == 'r') {
-            for (i = x; i < (ship.size + x); i++) {
-                if (grid[i][y] == 'v') {
-                    for (i = x; i < (ship.size + x); i++) {
-                        grid[i][y] = ship.id;
-                    }
-                }
-                else {
-                    return false;
-                }
+        for (i = oX; i < ship.size; i++) 
+	        {
+		        if (grid[oX + dX*i][oY] == EMPTY_SLOT) 
+			        {
+		        		for (j = oY; j<ship.size; j++) 
+		        			{
+		        			grid[oX + dX*i][oY + dY*j] = ship.id;
+		        			}
+			        }
+                else 
+                	{
+                		return false;
+                	}
             }
-        }
-        if (orientation == 'b') {
-            for (i = y; i < (ship.size - y); i--) {
-                if (grid[x][i] == 'v') {
-                    for (i = y; i < (ship.size - y); i--) {
-                        grid[x][i] = ship.id;
-                    }
-                }
-                else {
-                    return false;
-                }
-            }
-        }
-        if (orientation == 'l') {
-            for (i = x; i < (ship.size - x); i--) {
-                if (grid[i][y] == 'v') {
-                    for (i = x; i < (ship.size - x); i--) {
-                        grid[i][y] = ship.id;
-                    }
-                }
-                else {
-                    return false;
-                }
-            }
-        }
-        if (orientation == 't') {
-            for (i = x; i < (ship.size + x); i++) {
-                if (grid[x][i] == 'v') {
-                    for (i = x; i < (ship.size + x); i++) {
-                        grid[x][i] = ship.id;
-                    }
-                }
-                else {
-                    return false;
-                }
-            }
-        }
-
+        
         return false;
+    
     }
 }
