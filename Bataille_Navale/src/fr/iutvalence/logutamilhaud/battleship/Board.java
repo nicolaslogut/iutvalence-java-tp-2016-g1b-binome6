@@ -18,9 +18,13 @@ public class Board {
     
     
     /** Initialize of the grid for the game. */
-    public Board() {
-        for (int i = 0; i < NB_LINE; i++) {
-            for (int j = 0; j < NB_COLUMN; j++) {
+    public Board() 
+    {
+        grid = new char[NB_LINE][NB_COLUMN];
+    	for (int i = 0; i < NB_LINE; i++) 
+        {
+            for (int j = 0; j < NB_COLUMN; j++) 
+            {
                 grid[i][j] = EMPTY_SLOT;
             }
         }
@@ -59,7 +63,7 @@ public class Board {
 			        {
 		        		for (j = oY; j<ship.size; j++) 
 		        			{
-		        			grid[oX + dX*i][oY + dY*j] = ship.id;
+		        				grid[oX + dX*i][oY + dY*j] = ship.id;
 		        			}
 			        }
                 else 
@@ -69,6 +73,36 @@ public class Board {
             }
         
         return false;
-    
     }
+    
+    public void displayBoard()
+    {
+    	for (int i = 0; i < NB_LINE; i++)
+    	{
+    		for (int j = 0; j < NB_COLUMN; j++)
+    		{
+    			System.out.print(grid[j][i]);
+    		}
+    		System.out.print("\n");
+    	}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

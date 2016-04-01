@@ -4,16 +4,15 @@ package fr.iutvalence.logutamilhaud.battleship;
  */
 public class Destroyer extends Boat
 {
+	/** constant which set the life and the size (which are equal) of the boat. */
+	private final static int LIFE_AND_SIZE=3;
 	/**
 	 * Constructor
-	 * @param size size of the destroyer.
-	 * @param nbLife actual life of the destroyer.
-	 * @param id Id of the boat.
 	 */
-	public Destroyer(int size, int nbLife, char id)
+	public Destroyer()
 	{
-		this.size=3;
-		this.life=3;
+		this.size=LIFE_AND_SIZE;
+		this.life=LIFE_AND_SIZE;
 		this.id='D';
 	}
 	/**

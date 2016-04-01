@@ -4,16 +4,15 @@ package fr.iutvalence.logutamilhaud.battleship;
  */
 public class Submarine extends Boat
 {
+	/** constant which set the life and the size (which are equal) of the boat. */
+	private final static int LIFE_AND_SIZE=1;
 	/**
 	 * Constructor
-	 * @param size size of the submarine.
-	 * @param nbLife actual life of the submarine.
-	 * @param id Id of the boat.
 	 */
-	public Submarine(int size, int nbLife, char id)
+	public Submarine()
 	{
-		this.size=1;
-		this.life=1;
+		this.size=LIFE_AND_SIZE;
+		this.life=LIFE_AND_SIZE;
 		this.id='S';
 	}
 	/**

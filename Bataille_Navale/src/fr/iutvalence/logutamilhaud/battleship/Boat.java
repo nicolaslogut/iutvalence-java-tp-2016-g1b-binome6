@@ -13,5 +13,4 @@ abstract class Boat {
 	public int life;
 	/** The id of boat(destoyer ("d"), boat("b"), ..... */
 	public char id;
-	
 }

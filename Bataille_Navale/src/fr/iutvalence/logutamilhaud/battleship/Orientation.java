@@ -11,16 +11,19 @@ public enum Orientation
 	private final int deltaX;
 	private final int deltaY;
 	
-	Orientation(int deltaX, int deltaY) {
+	Orientation(int deltaX, int deltaY) 
+	{
 		this.deltaX = deltaX;
 		this.deltaY = deltaY;
 	}
 	
-	public int dX() {
+	public int dX() 
+	{
 		return deltaX;
 	}
 	
-	public int dY() {
+	public int dY() 
+	{
 		return deltaY;
 	}
 	

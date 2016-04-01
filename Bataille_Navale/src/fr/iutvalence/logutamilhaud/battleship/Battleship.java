@@ -2,7 +2,6 @@ package fr.iutvalence.logutamilhaud.battleship;
 
 /**
  * Main of the application..
- *
  * @author logut
  * @version 25/03
  */
