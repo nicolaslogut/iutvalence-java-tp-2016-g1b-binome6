@@ -13,7 +13,7 @@ public class Cruiser extends Boat
 	public Cruiser()
 	{
 		this.size=LIFE_AND_SIZE;
-		this.life=LIFE_AND_SIZE;
+		this.life=LIFE_AND_SIZE; 
 		this.id='C';
 	}
 	/**

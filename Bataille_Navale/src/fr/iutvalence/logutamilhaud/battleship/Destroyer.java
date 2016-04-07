@@ -12,7 +12,7 @@ public class Destroyer extends Boat
 	public Destroyer()
 	{
 		this.size=LIFE_AND_SIZE;
-		this.life=LIFE_AND_SIZE;
+		this.life=LIFE_AND_SIZE; 
 		this.id='D';
 	}
 	/**

@@ -10,7 +10,7 @@ abstract class Boat {
 	/** Size of the boat. */
 	public  int size;
 	/** The life of the boat.  */
-	public int life;
+	public int life; 
 	/** The id of boat(destoyer ("d"), boat("b"), ..... */
 	public char id;
 }

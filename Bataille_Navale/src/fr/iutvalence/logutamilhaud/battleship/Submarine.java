@@ -12,7 +12,7 @@ public class Submarine extends Boat
 	public Submarine()
 	{
 		this.size=LIFE_AND_SIZE;
-		this.life=LIFE_AND_SIZE;
+		this.life=LIFE_AND_SIZE; 
 		this.id='S';
 	}
 	/**

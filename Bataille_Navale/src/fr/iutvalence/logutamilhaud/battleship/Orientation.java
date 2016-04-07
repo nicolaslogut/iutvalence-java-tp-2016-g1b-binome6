@@ -14,7 +14,7 @@ public enum Orientation
 	Orientation(int deltaX, int deltaY) 
 	{
 		this.deltaX = deltaX;
-		this.deltaY = deltaY;
+		this.deltaY = deltaY; 
 	}
 	
 	public int dX() 

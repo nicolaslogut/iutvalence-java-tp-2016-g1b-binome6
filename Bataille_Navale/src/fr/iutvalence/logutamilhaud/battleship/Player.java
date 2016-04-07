@@ -8,7 +8,7 @@ package fr.iutvalence.logutamilhaud.battleship;
  */
 public class Player {
 	/** Name of player. */
-	private String name;
+	private String name; 
 
 	/**
 	 * Initialize the name of a player.

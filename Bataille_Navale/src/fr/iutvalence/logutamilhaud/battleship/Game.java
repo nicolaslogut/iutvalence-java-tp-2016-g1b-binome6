@@ -36,7 +36,7 @@ public class Game
         this.player1 = new Player(name1);
         this.player2 = new Player(name2);
         this.playedPositionPlayer1 = new Board();
-        this.playedPositionPlayer2 = new Board();
+        this.playedPositionPlayer2 = new Board(); 
         this.boatPositionPlayer1 = new Board();
         this.boatPositionPlayer2 = new Board();
      

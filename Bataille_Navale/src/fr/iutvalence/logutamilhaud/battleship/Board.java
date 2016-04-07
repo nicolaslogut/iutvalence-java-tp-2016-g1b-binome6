@@ -85,7 +85,7 @@ public class Board {
     		{
     			System.out.print(grid[j][i]);
     		}
-    		System.out.print("\n");
+    		System.out.print("\n"); 
     	}
     }
 

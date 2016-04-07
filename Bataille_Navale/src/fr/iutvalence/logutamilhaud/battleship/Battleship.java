@@ -12,7 +12,7 @@ public class Battleship {
      * @param args Useless
      */
     public static void main(String[] args) {
-        Game game = new Game("Truc", "Bidule");
+        Game game = new Game("Truc", "Bidule"); 
         game.run();
     }
 }
