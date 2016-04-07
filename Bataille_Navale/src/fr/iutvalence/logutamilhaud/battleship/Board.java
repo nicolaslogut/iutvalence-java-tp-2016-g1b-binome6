@@ -57,7 +57,7 @@ public class Board {
             return false;
         }
         
-        for (i = oX; i < ship.size; i++) 
+        for (i = oX; i <ship.size; i++) 
 	        {
 		        if (grid[oX + dX*i][oY] == EMPTY_SLOT) 
 			        {
@@ -74,7 +74,9 @@ public class Board {
         
         return false;
     }
-    
+    /**
+     * Display the bord on the console.
+     */
     public void displayBoard()
     {
     	for (int i = 0; i < NB_LINE; i++)
@@ -89,12 +91,38 @@ public class Board {
 
 
 
+    /**
+     * Shot a fire in the boats board.
+     * @param X x position
+     * @param Y y posistion
+     * @return boolean true if there's a boat, false if not
+     */
+    public boolean takeAShot(int X, int Y)
+    {
+    	if(grid[X][Y]!=EMPTY_SLOT)
+    	{
+    		grid[X][Y]='X';
+    		// Savoir quel bateau est touché ?
+    	}
+    }
 
 
-
-
-
-
+    /**
+     *  Marque on the display board where the shot are fire and if a bot is touch.
+     * @param X x position
+     * @param Y y posistion
+     */
+    public void displayAShot(int X, int Y)
+    {
+    	if(takeAShot(X,Y)==true)
+    	{
+    		grid[X][Y]='X';
+    	}
+    	else
+    	{
+    		grid[X][Y]='O';
+    	}
+    }
 
 
 

@@ -51,6 +51,7 @@ public class Game
         
         for(int i=0;i<5;i++)
         {
+
         	boatPositionPlayer1.putABoat(boats1[i],i,i,RIGHT);
         	boatPositionPlayer1.putABoat(boats1[i],i,i,RIGHT);
         	boatPositionPlayer1.putABoat(boats1[i],i,i,RIGHT);
