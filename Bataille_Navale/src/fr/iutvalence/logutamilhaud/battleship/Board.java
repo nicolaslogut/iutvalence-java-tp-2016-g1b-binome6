@@ -92,7 +92,8 @@ public class Board {
 
 
     /**
-     * Shot a fire in the boats board.
+     * Shot a fire in the boats board.*
+     * 
      * @param X x position
      * @param Y y posistion
      * @return boolean true if there's a boat, false if not
