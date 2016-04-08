@@ -46,10 +46,6 @@ public class Board {
         int dX = ori.dX();
         /** delta of shift in y */
         int dY = ori.dY();
-        /** increment of the first loop */
-        int i;
-        /** increment of the second loop */
-        int j;
         
         
         if (grid[oX][oY] !=EMPTY_SLOT) 
@@ -57,22 +53,23 @@ public class Board {
             return false;
         }
         
-        for (i = oX; i <ship.size; i++) 
-	        {
-		        if (grid[oX + dX*i][oY] == EMPTY_SLOT) 
-			        {
-		        		for (j = oY; j<ship.size; j++) 
-		        			{
-		        				grid[oX + dX*i][oY + dY*j] = ship.id;
-		        			}
-			        }
-                else 
-                	{
-                		return false;
-                	}
-            }
+        if(ship.size*dX + oX>9 || ship.size*dX + oX < 0 || ship.size*dY + oY>9 || ship.size*dY+oY<0)
+        {
+        	return false;
+        }
         
-        return false;
+        
+        for (int i = 0; i < ship.size; i++) {
+        	if (grid[oX + dX*i][oY + dY*i] != EMPTY_SLOT) {
+        		return false;
+        	}
+        }
+        
+        for (int j = 0; j < ship.size; j++) {
+		      grid[oX + dX*j][oY + dY*j] = ship.id;
+		}
+        
+        return true;
     }
     /**
      * Display the bord on the console.
@@ -103,15 +100,16 @@ public class Board {
     	if(grid[X][Y]!=EMPTY_SLOT)
     	{
     		grid[X][Y]='X';
-    		// Savoir quel bateau est touché ?
+    		return true;
     	}
+    	return false;
     }
 
 
     /**
      *  Marque on the display board where the shot are fire and if a bot is touch.
      * @param X x position
-     * @param Y y posistion
+     * @param Y y position
      */
     public void displayAShot(int X, int Y)
     {

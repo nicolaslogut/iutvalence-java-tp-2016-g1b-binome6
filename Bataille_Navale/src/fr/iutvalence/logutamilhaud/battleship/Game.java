@@ -49,30 +49,24 @@ public class Game
     	Boat[] boats1 = new Boat[]{new Cruiser(),  new Cruiser(), new Submarine(), new Submarine(), new Destroyer()};
         Boat[] boats2 = new Boat[]{new Cruiser(),  new Cruiser(), new Submarine(), new Submarine(), new Destroyer()};
         
-        for(int i=0;i<5;i++)
+        
+        if(boatPositionPlayer1.putABoat(boats1[0],9,9,TOP)==false)
         {
+    		System.out.println("----------");
+        }
+        
 
-        	boatPositionPlayer1.putABoat(boats1[i],i,i,RIGHT);
-        	boatPositionPlayer1.putABoat(boats1[i],i,i,RIGHT);
-        	boatPositionPlayer1.putABoat(boats1[i],i,i,RIGHT);
-        	boatPositionPlayer1.putABoat(boats1[i],i,i,RIGHT);
-        	boatPositionPlayer1.putABoat(boats1[i],i,i,RIGHT);
-        }
-        for(int i=0;i<5;i++)
-        {
-        	boatPositionPlayer2.putABoat(boats2[i],i,i,RIGHT);
-        	boatPositionPlayer2.putABoat(boats2[i],i,i,RIGHT);
-        	boatPositionPlayer2.putABoat(boats2[i],i,i,RIGHT);
-        	boatPositionPlayer2.putABoat(boats2[i],i,i,RIGHT);
-        	boatPositionPlayer2.putABoat(boats2[i],i,i,RIGHT);
-        }
+
         
         boatPositionPlayer1.displayBoard();
 		System.out.println("----------");
+      /*  playedPositionPlayer1.displayBoard();
+        System.out.println("----------");
+        System.out.println("----------");
         boatPositionPlayer2.displayBoard();
-        
-    	
-    	// Démarrage de la partie
+        System.out.println("----------");
+        playedPositionPlayer2.displayBoard();*/
+
     	
     }
 }
