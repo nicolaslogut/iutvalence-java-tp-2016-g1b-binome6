@@ -14,7 +14,16 @@ public class Player {
 	 * Initialize the name of a player.
 	 * @param name name of a player
      */
-	public Player(String name) {
+	public Player(String name) 
+	{
 		this.name = name;
 	}
+	/**
+	 * Get the name of the player.
+	 * @return name of the player
+	 */
+	public String getName() 
+	{
+		return name;
+	}	
 }

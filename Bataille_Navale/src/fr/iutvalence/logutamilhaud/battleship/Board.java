@@ -6,15 +6,20 @@ package fr.iutvalence.logutamilhaud.battleship;
  * @author logut
  * @version 25/03
  */
-public class Board {
+public class Board extends Exception
+{
     /** Board who represent the grid of the game. */
     public char[][] grid;
-    /** Number of ligne of the board. */
+    /** Number of line of the board. */
     private final static int NB_LINE=10;
     /** Number of column of the board. */
     private final static int NB_COLUMN=10;
     /** Symbol of an empty case. */
     private final static char EMPTY_SLOT='V';
+    /** Symbol for a boat who was shot. */
+    private final static char BOAT_SHOT='X';
+    /** Symbol for a shot miss. */
+    private final static char MISS='O';
     
     
     /** Initialize of the grid for the game. */
@@ -39,8 +44,10 @@ public class Board {
      * @param orientation orientation of the boat.
      *
      * @return boolean true if the boat is on the board false if it's not possible.
+     * @throws InvalidPositionException 
+     * @throws OutOfRangeException 
      */
-    public boolean putABoat(Boat ship, int oX, int oY, Orientation ori) 
+    public void putABoat(Boat ship, int oX, int oY, Orientation ori) throws InvalidPositionException, OutOfRangeException 
     {
     	/** delta of shift in x */
         int dX = ori.dX();
@@ -50,29 +57,27 @@ public class Board {
         
         if (grid[oX][oY] !=EMPTY_SLOT) 
         {
-            return false;
+            throw new InvalidPositionException();
         }
         
         if(ship.size*dX + oX>9 || ship.size*dX + oX < 0 || ship.size*dY + oY>9 || ship.size*dY+oY<0)
         {
-        	return false;
+        	throw new OutOfRangeException();
         }
         
         
         for (int i = 0; i < ship.size; i++) {
         	if (grid[oX + dX*i][oY + dY*i] != EMPTY_SLOT) {
-        		return false;
+        		throw new OutOfRangeException();
         	}
         }
         
         for (int j = 0; j < ship.size; j++) {
 		      grid[oX + dX*j][oY + dY*j] = ship.id;
 		}
-        
-        return true;
     }
     /**
-     * Display the bord on the console.
+     * Display the board on the console.
      */
     public void displayBoard()
     {
@@ -92,44 +97,46 @@ public class Board {
      * Shot a fire in the boats board.*
      * 
      * @param X x position
-     * @param Y y posistion
+     * @param Y y position
+     * @param boardShot board who was shot
+     * @param displayBoard board where the shot is display
      * @return boolean true if there's a boat, false if not
      */
-    public boolean takeAShot(int X, int Y)
+    public boolean takeAShot(int X, int Y, Board displayBoard)
     {
     	if(grid[X][Y]!=EMPTY_SLOT)
     	{
-    		grid[X][Y]='X';
+    		grid[X][Y]=BOAT_SHOT;
+    		displayBoard.grid[X][Y]=BOAT_SHOT;
     		return true;
+    	}
+    	else
+    	{
+    		displayBoard.grid[X][Y]=MISS;
     	}
     	return false;
     }
 
-
     /**
-     *  Marque on the display board where the shot are fire and if a bot is touch.
-     * @param X x position
-     * @param Y y position
+     * Check if a player win.
+     * @return true if someone win, false if not.
      */
-    public void displayAShot(int X, int Y)
+    public boolean checkVitctory()
     {
-    	if(takeAShot(X,Y)==true)
+    	for(int i=0;i<NB_LINE;i++)
     	{
-    		grid[X][Y]='X';
+    		for(int j=0;j<NB_COLUMN;j++)
+    		{
+    			if(grid[i][j]!=EMPTY_SLOT)
+    			{
+    				if(grid[i][j]!=BOAT_SHOT)
+    				{
+    					return false;
+    				}	
+    			}
+    		}
     	}
-    	else
-    	{
-    		grid[X][Y]='O';
-    	}
+    	return true;
     }
-
-
-
-
-
-
-
-
-
 
 }

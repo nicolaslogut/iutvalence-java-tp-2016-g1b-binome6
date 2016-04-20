@@ -5,14 +5,15 @@ package fr.iutvalence.logutamilhaud.battleship;
  * @author logut
  * @version 25/03
  */
-public class Battleship {
+public class Battleship 
+{
     /**
      * Run the game.
      *
      * @param args Useless
      */
     public static void main(String[] args) {
-        Game game = new Game("Truc", "Bidule"); 
+        Game game = new Game("Joueur 1", "Joueur 2"); 
         game.run();
     }
 }
