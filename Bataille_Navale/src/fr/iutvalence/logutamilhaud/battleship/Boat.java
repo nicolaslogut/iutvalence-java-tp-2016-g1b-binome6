@@ -13,4 +13,11 @@ abstract class Boat {
 	public int life; 
 	/** The id of boat(destoyer ("d"), boat("b"), ..... */
 	public char id;
+	/** Name of the boat. */
+	public String nameOfBoat;
+	
+	public String getNameOfBoat() {
+		return nameOfBoat;
+	}
+
 }

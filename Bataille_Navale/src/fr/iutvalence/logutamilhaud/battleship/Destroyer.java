@@ -14,6 +14,7 @@ public class Destroyer extends Boat
 		this.size=LIFE_AND_SIZE;
 		this.life=LIFE_AND_SIZE; 
 		this.id='D';
+		this.nameOfBoat="Destroyer";
 	}
 	/**
 	 * Get size of the boat.

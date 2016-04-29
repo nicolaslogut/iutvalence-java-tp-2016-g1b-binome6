@@ -15,6 +15,7 @@ public class Cruiser extends Boat
 		this.size=LIFE_AND_SIZE;
 		this.life=LIFE_AND_SIZE; 
 		this.id='C';
+		this.nameOfBoat="Cruiser";
 	}
 	/**
 	 * Get size of the boat.

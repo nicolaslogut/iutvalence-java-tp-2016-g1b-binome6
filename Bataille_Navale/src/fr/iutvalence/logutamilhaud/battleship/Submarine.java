@@ -14,6 +14,7 @@ public class Submarine extends Boat
 		this.size=LIFE_AND_SIZE;
 		this.life=LIFE_AND_SIZE; 
 		this.id='S';
+		this.nameOfBoat="Submarine";
 	}
 	/**
 	 * Get size of the boat.

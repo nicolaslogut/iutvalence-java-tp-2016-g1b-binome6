@@ -15,7 +15,7 @@ public class Board extends Exception
     /** Number of column of the board. */
     private final static int NB_COLUMN=10;
     /** Symbol of an empty case. */
-    private final static char EMPTY_SLOT='V';
+    private final static char EMPTY_SLOT='*';
     /** Symbol for a boat who was shot. */
     private final static char BOAT_SHOT='X';
     /** Symbol for a shot miss. */
@@ -34,7 +34,22 @@ public class Board extends Exception
             }
         }
     }
-
+    
+    /**
+     * Return if the point is in the board or not.
+     * @param X the position in X
+     * @param Y the position in
+     * @return true is the point is in the board false if not.
+     */
+    public boolean isInBoard(int X,int Y)
+    {
+    	if((X>=0 && X<NB_LINE) && (Y>=0 && Y<NB_LINE))
+    	{
+    		return true;
+    	}
+    	return false;
+    }
+    
     /**
      * Place a boat on the board.
      *
@@ -55,13 +70,11 @@ public class Board extends Exception
         int dY = ori.dY();
         
         
-        if (grid[oX][oY] !=EMPTY_SLOT) 
-        {
+        if (grid[oX][oY] != EMPTY_SLOT) {
             throw new InvalidPositionException();
         }
         
-        if(ship.size*dX + oX>9 || ship.size*dX + oX < 0 || ship.size*dY + oY>9 || ship.size*dY+oY<0)
-        {
+        if(isInBoard(ship.size*dX + oX,ship.size*dY + oY)==false) {
         	throw new OutOfRangeException();
         }
         
@@ -90,8 +103,6 @@ public class Board extends Exception
     		System.out.print("\n"); 
     	}
     }
-
-
 
     /**
      * Shot a fire in the boats board.*

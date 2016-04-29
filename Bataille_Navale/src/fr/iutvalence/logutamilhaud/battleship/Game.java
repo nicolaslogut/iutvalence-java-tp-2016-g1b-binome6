@@ -54,116 +54,80 @@ public class Game
         
         System.out.println("Joueur 1 veuillez saisir vos bateaux");
         
-        for(int i =0;i<5;i++)
+        for(int i =0;i<2;i++)
         {
+        	System.out.println("Bateau selectionne : "+boats1[i].getNameOfBoat());
 			System.out.println("Veuillez saisir une position X :");
 			int X = scan.nextInt();
 			System.out.println("Veuillez saisir une position Y :");
 			int Y = scan.nextInt();
+			scan.nextLine();
 			System.out.println("Veuillez saisir une orientation :");
 			String orientation= scan.nextLine();
-        	
-			if(orientation=="RIGHT")
-			{
-				try {
-					boatPositionPlayer1.putABoat(boats1[i], X, Y, RIGHT);
-				} catch (InvalidPositionException | OutOfRangeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		
+
+			
+			try {
+				boatPositionPlayer1.putABoat(boats1[i], X, Y, Orientation.valueOf(orientation));
+			} catch (InvalidPositionException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (OutOfRangeException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			if(orientation=="LEFT")
-			{
-				try {
-					boatPositionPlayer1.putABoat(boats1[i], X, Y, LEFT);
-				} catch (InvalidPositionException | OutOfRangeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(orientation=="TOP")
-			{
-				try {
-					boatPositionPlayer1.putABoat(boats1[i], X, Y, TOP);
-				} catch (InvalidPositionException | OutOfRangeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(orientation=="BOTTOM")
-			{
-				try {
-					boatPositionPlayer1.putABoat(boats1[i], X, Y, BOTTOM);
-				} catch (InvalidPositionException | OutOfRangeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}	
+			
+			
         }
         
-        System.out.println("Joueur é veuillez saisir vos bateaux");
-        for(int i =0;i<5;i++)
+        boatPositionPlayer1.displayBoard();
+        
+        System.out.println("Joueur 2 veuillez saisir vos bateaux");
+        for(int i =0;i<2;i++)
         {
+        	System.out.println("Bateau selectionne : "+boats1[i].getNameOfBoat());
 			System.out.println("Veuillez saisir une position X :");
 			int X = scan.nextInt();
 			System.out.println("Veuillez saisir une position Y :");
 			int Y = scan.nextInt();
+			scan.nextLine();
 			System.out.println("Veuillez saisir une orientation :");
 			String orientation= scan.nextLine();
         	
-			if(orientation=="RIGHT")
-			{
-				try {
-					boatPositionPlayer2.putABoat(boats2[i], X, Y, RIGHT);
-				} catch (InvalidPositionException | OutOfRangeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				boatPositionPlayer2.putABoat(boats1[i], X, Y, Orientation.valueOf(orientation));
+			} catch (InvalidPositionException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (OutOfRangeException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			if(orientation=="LEFT")
-			{
-				try {
-					boatPositionPlayer2.putABoat(boats2[i], X, Y, LEFT);
-				} catch (InvalidPositionException | OutOfRangeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(orientation=="TOP")
-			{
-				try {
-					boatPositionPlayer2.putABoat(boats2[i], X, Y, TOP);
-				} catch (InvalidPositionException | OutOfRangeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(orientation=="BOTTOM")
-			{
-				try {
-					boatPositionPlayer2.putABoat(boats2[i], X, Y, BOTTOM);
-				} catch (InvalidPositionException | OutOfRangeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}	
         }
 
-
+        System.out.println(" ");
+        System.out.println("La bataille va commencer");
+        System.out.println(" ");
 
         
 		currentPlayer=1;
 		
 		while(true)
 		{
+			//Tour joueur 1
+			System.out.println("Coup joue Joueur"+currentPlayer);
 					
-			System.out.println("Veuillez saisir une position X :");
+			System.out.println(" ");
+			System.out.println(" ");
+			System.out.println("Joueur"+ currentPlayer +"Veuillez saisir une position X :");
 			int X = scan.nextInt();
-			System.out.println("Veuillez saisir une position Y :");
+			System.out.println(" ");
+			System.out.println("Joueur"+ currentPlayer +"Veuillez saisir une position Y :");
 			int Y = scan.nextInt();
+			System.out.println(" ");
 			
 			boatPositionPlayer2.takeAShot(X, Y, playedPositionPlayer1);
-			
+			playedPositionPlayer1.displayBoard();
 			if(boatPositionPlayer2.checkVitctory()==true)
 			{
 				break;
@@ -174,13 +138,21 @@ public class Game
 			}
 			
 			
-			System.out.println("Veuillez saisir une position X :");
+			//Tour joueur 2
+			System.out.println("Coup joue Joueur"+currentPlayer);
+					
+			System.out.println(" ");
+			System.out.println(" ");
+			
+			System.out.println("Joueur"+ currentPlayer +"Veuillez saisir une position X :");
 			X = scan.nextInt();
-			System.out.println("Veuillez saisir une position Y :");
+			System.out.println(" ");
+			System.out.println("Joueur"+ currentPlayer +"Veuillez saisir une position Y :");
 			Y = scan.nextInt();
+			System.out.println(" ");
 			
 			boatPositionPlayer1.takeAShot(X, Y, playedPositionPlayer2);
-			scan.close();
+			playedPositionPlayer1.displayBoard();
 			
 			if(boatPositionPlayer1.checkVitctory()==true)
 			{
@@ -191,6 +163,7 @@ public class Game
 				currentPlayer=1;
 			}
 		}
+		
 		System.out.println("Victory player ");
 		if(currentPlayer==1)
 		{
