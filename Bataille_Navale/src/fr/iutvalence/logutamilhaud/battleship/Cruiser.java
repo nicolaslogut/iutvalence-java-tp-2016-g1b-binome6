@@ -5,15 +5,14 @@ package fr.iutvalence.logutamilhaud.battleship;
 public class Cruiser extends Boat
 {
 
-	/** constant which set the life and the size (which are equal) of the boat. */
-	private final static int LIFE_AND_SIZE=2;
+	/** constant which set the size of the boat. */
+	private final static int SIZE=2;
 	/**
 	 * Constructor
 	 */
 	public Cruiser()
 	{
-		this.size=LIFE_AND_SIZE;
-		this.life=LIFE_AND_SIZE; 
+		this.size=SIZE;
 		this.id='C';
 		this.nameOfBoat="Cruiser";
 	}
@@ -22,14 +21,6 @@ public class Cruiser extends Boat
 	 * @return size
 	 */
 	public int getSize()
-	{
-		return this.size;
-	}
-	/**
-	 * get life of the boat.
-	 * @return life
-	 */
-	public int getLife()
 	{
 		return this.size;
 	}

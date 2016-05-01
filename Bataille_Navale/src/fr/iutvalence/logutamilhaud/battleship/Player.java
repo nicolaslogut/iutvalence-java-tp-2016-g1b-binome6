@@ -8,7 +8,7 @@ package fr.iutvalence.logutamilhaud.battleship;
  */
 public class Player {
 	/** Name of player. */
-	private String name; 
+	public String name; 
 
 	/**
 	 * Initialize the name of a player.
@@ -25,5 +25,17 @@ public class Player {
 	public String getName() 
 	{
 		return name;
-	}	
+	}
+	/**
+	 * Set the name of the player
+	 * @param name of the player
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Player() 
+	{
+		this.name = null;
+	}
 }
