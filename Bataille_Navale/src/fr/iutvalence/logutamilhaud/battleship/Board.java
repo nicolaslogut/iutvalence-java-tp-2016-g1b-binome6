@@ -6,7 +6,7 @@ package fr.iutvalence.logutamilhaud.battleship;
  * @author logut
  * @version 25/03
  */
-public class Board extends Exception
+public class Board
 {
     /** Board who represent the grid of the game. */
     public char[][] grid;
