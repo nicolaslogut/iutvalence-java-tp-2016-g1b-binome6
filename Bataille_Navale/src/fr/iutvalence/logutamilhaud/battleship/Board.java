@@ -53,10 +53,9 @@ public class Board
      * @param ship the boat that we want to place. 
      * @param oX position on x of the boat.
      * @param oY position on y of the boat.
-     * @param orientation orientation of the boat.
+     * @param ori orientation of the boat.
      *
-     * @return boolean true if the boat is on the board false if it's not possible.
-     * @throws InvalidPositionException 
+     * @throws InvalidPositionException
      * @throws OutOfRangeException 
      */
     public void putABoat(Boat ship, int oX, int oY, Orientation ori) throws InvalidPositionException, OutOfRangeException 
@@ -106,7 +105,6 @@ public class Board
      * 
      * @param X x position
      * @param Y y position
-     * @param boardShot board who was shot
      * @param displayBoard board where the shot is display
      * @return boolean true if there's a boat, false if not
      */
