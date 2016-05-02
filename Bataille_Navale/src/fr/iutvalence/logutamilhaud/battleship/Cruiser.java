@@ -1,28 +1,33 @@
 package fr.iutvalence.logutamilhaud.battleship;
-/*
- * Inherited class from Boat.
+
+/**
+ * TODO.
+ *
+ * @author TODO
+ * @version TODO
  */
-public class Cruiser extends Boat
-{
+public class Cruiser extends Boat {
 
-	/** constant which set the size of the boat. */
-	private final static int SIZE=2;
-	/**
-	 * Constructor
-	 */
-	public Cruiser()
-	{
-		this.size=SIZE;
-		this.id='C';
-		this.nameOfBoat="Cruiser";
-	}
-	/**
-	 * Get size of the boat.
-	 * @return size
-	 */
-	public int getSize()
-	{
-		return this.size;
-	}
+    /** Constant which set the size of the boat. */
+    private static final int SIZE = 2;
 
+    // TODO Create a constructor in Boat and call it from the subclasses.
+    /**
+     * Constructor
+     */
+    public Cruiser() {
+        size = SIZE;
+        id = 'C';
+        nameOfBoat = "Cruiser";
+    }
+
+    // TODO Why is it in this class and not in Boat?
+    /**
+     * Get size of the boat.
+     *
+     * @return size
+     */
+    public int getSize() {
+        return size;
+    }
 }
