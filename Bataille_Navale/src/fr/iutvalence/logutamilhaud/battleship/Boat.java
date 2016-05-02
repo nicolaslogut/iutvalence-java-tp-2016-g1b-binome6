@@ -1,5 +1,6 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
+// TODO Create a dedicated package for the boats
 /**
  * Boat of the game.
  *
@@ -7,15 +8,15 @@ package fr.iutvalence.logutamilhaud.battleship;
  * @version 25/03
  */
 abstract class Boat {
-	/** Size of the boat. */
-	public  int size;
-	/** The id of boat(destoyer ("d"), boat("b"), ..... */
-	public char id;
-	/** Name of the boat. */
-	public String nameOfBoat;
-	
-	public String getNameOfBoat() {
-		return nameOfBoat;
-	}
+    /** Size of the boat. */
+    protected int    size;
+    /* TODO This isn't indicated by the class? */
+    /** The id of boat(destoyer ("d"), boat("b"), ..... */
+    protected char   id;
+    /** Name of the boat. */
+    protected String nameOfBoat;
 
+    public String getNameOfBoat() {
+        return nameOfBoat;
+    }
 }
