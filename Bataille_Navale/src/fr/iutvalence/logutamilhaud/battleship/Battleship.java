@@ -13,7 +13,8 @@ public class Battleship
      * @param args Useless
      */
     public static void main(String[] args) {
-        Game game = new Game("Joueur 1", "Joueur 2"); 
+        // TODO Names should be provided by the players.
+        Game game = new Game("Joueur 1", "Joueur 2");
         game.run();
     }
 }
