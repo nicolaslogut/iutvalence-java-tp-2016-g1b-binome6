@@ -8,19 +8,20 @@ package fr.iutvalence.logutamilhaud.battleship;
  */
 public class Board
 {
-    /** Board who represent the grid of the game. */
-    public char[][] grid;
     /** Number of line of the board. */
-    private final static int NB_LINE=10;
+    private static final int  NB_LINE    = 10;
     /** Number of column of the board. */
-    private final static int NB_COLUMN=10;
+    private static final int  NB_COLUMN  = 10;
     /** Symbol of an empty case. */
-    private final static char EMPTY_SLOT='*';
+    private static final char EMPTY_SLOT = '*';
     /** Symbol for a boat who was shot. */
-    private final static char BOAT_SHOT='X';
+    private static final char BOAT_SHOT  = 'X';
     /** Symbol for a shot miss. */
-    private final static char MISS='O';
-    
+    private static final char MISS       = 'O';
+
+    /** Board who represent the grid of the game. */
+    private final char[][] grid;
+
     
     /** Initialize of the grid for the game. */
     public Board() 
