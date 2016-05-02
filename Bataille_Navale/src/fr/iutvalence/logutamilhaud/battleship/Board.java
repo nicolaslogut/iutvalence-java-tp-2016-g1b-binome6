@@ -44,11 +44,7 @@ public class Board
      */
     public boolean isInBoard(int X,int Y)
     {
-    	if((X>=0 && X<NB_LINE) && (Y>=0 && Y<NB_LINE))
-    	{
-    		return true;
-    	}
-    	return false;
+        return (X >= 0) && (X < NB_LINE) && (Y >= 0) && (Y < NB_LINE);
     }
     
     /**
