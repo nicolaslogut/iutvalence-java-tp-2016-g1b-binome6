@@ -114,16 +114,14 @@ public class Board
      */
     public boolean takeAShot(int X, int Y, Board displayBoard)
     {
-    	if(grid[X][Y]!=EMPTY_SLOT)
-    	{
-    		grid[X][Y]=BOAT_SHOT;
-    		displayBoard.grid[X][Y]=BOAT_SHOT;
-    		return true;
-    	}
-    	else
-    	{
-    		displayBoard.grid[X][Y]=MISS;
-    	}
+        if (grid[X][Y] == EMPTY_SLOT) {
+            displayBoard.grid[X][Y] = MISS;
+        }
+        else {
+            grid[X][Y] = BOAT_SHOT;
+            displayBoard.grid[X][Y] = BOAT_SHOT;
+            return true;
+        }
     	return false;
     }
 
