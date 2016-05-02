@@ -129,7 +129,7 @@ public class Board
      * Check if a player win.
      * @return true if someone win, false if not.
      */
-    public boolean checkVitctory()
+    public boolean victory()
     {
     	for(int i=0;i<NB_LINE;i++)
     	{
