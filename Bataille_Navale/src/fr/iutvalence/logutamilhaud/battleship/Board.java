@@ -1,5 +1,6 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
+// TODO public?
 /**
  * Board of the game.
  * 
@@ -35,7 +36,8 @@ public class Board
             }
         }
     }
-    
+
+    // TODO public?
     /**
      * Return if the point is in the board or not.
      * @param X the position in X
@@ -85,6 +87,8 @@ public class Board
 		      grid[oX + dX*j][oY + dY*j] = ship.id;
 		}
     }
+
+    // TODO You should use toString() rather than displayBoard()
     /**
      * Display the board on the console.
      */
