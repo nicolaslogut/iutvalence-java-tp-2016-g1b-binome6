@@ -1,212 +1,214 @@
 package fr.iutvalence.logutamilhaud.battleship;
+
+import java.util.Scanner;
+
 import static fr.iutvalence.logutamilhaud.battleship.Orientation.BOTTOM;
 import static fr.iutvalence.logutamilhaud.battleship.Orientation.LEFT;
+import static fr.iutvalence.logutamilhaud.battleship.Orientation.NOTHING;
 import static fr.iutvalence.logutamilhaud.battleship.Orientation.RIGHT;
 import static fr.iutvalence.logutamilhaud.battleship.Orientation.TOP;
-import static fr.iutvalence.logutamilhaud.battleship.Orientation.NOTHING;
-import java.util.Scanner;
+
 /**
- * game of battleship
+ * Game of battleship.
+ *
  * @author logut
  * @version 25/03
  */
-public class Game 
-{
+public class Game {
+    // TODO final?
+    /** First player. */
+    private final Player player1;
+    // TODO final?
+    /** Second player. */
+    private final Player player2;
+    // TODO final?
+    /** Grid of shot fired by player1. */
+    private final Board  playedPositionPlayer1;
+    // TODO final?
+    /** Grid of ship position of player1. */
+    private final Board  boatPositionPlayer1;
+    // TODO final?
+    /** Grid of shot fired by player2. */
+    private final Board  playedPositionPlayer2;
+    // TODO final?
+    /** Grid of ship position of player2. */
+    private final Board  boatPositionPlayer2;
 
-	/** First player. */
-	private Player player1;
-	/** Second player. */
-	private Player player2;
-	/** Grid of shot fired by player1  */
-	private Board  playedPositionPlayer1;
-	/** Grid of ship position of player1 */
-	private Board  boatPositionPlayer1;
-	/** Grid of shot fired by player2  */
-	private Board  playedPositionPlayer2;
-	/** Grid of ship position of player2 */
-	private Board  boatPositionPlayer2;
-	/** Actual player. */
-	private String tempPlayer;
-	/**
-	 * Create a game with 2 players, and initialize the board.
-	 *
-	 * @param name1 name of the first player.
-	 * @param name2 name of the second player.
-	 */
-	public Game(String name1, String name2) 
-	{
-		this.player1 = new Player(name1);
-		this.player2 = new Player(name2);
-		this.playedPositionPlayer1 = new Board();
-		this.playedPositionPlayer2 = new Board(); 
-		this.boatPositionPlayer1 = new Board();
-		this.boatPositionPlayer2 = new Board();
-	}
+    // TODO An attribute? A String?
+    /** Actual player. */
+    private String tempPlayer;
 
-	/** Start the game. */
-	public void run() 
-	{
-		Boat[] boats1 = new Boat[]{new Cruiser(),  new Cruiser(), new Submarine(), new Submarine(), new Destroyer()};
-		Boat[] boats2 = new Boat[]{new Cruiser(),  new Cruiser(), new Submarine(), new Submarine(), new Destroyer()};
+    /**
+     * Create a game with 2 players, and initialize the board.
+     *
+     * @param name1 name of the first player.
+     * @param name2 name of the second player.
+     */
+    public Game(String name1, String name2) {
+        player1 = new Player(name1);
+        player2 = new Player(name2);
+        playedPositionPlayer1 = new Board();
+        playedPositionPlayer2 = new Board();
+        boatPositionPlayer1 = new Board();
+        boatPositionPlayer2 = new Board();
+    }
 
-		Scanner scan = new Scanner(System.in);
+    /** Start the game. */
+    public void run() {
+        Boat[] boats1 = {new Cruiser(), new Cruiser(), new Submarine(), new Submarine(), new Destroyer()};
+        Boat[] boats2 = {new Cruiser(), new Cruiser(), new Submarine(), new Submarine(), new Destroyer()};
 
-		// ---------- Joueur 1 pose ses bateaux ----------
+        Scanner scan = new Scanner(System.in);
 
-		System.out.println("Joueur 1 veuillez saisir vos bateaux");
+        // TODO Create a new private method to factorize all the processing for a given player
+        // TODO Translate everything
+        // ---------- Joueur 1 pose ses bateaux ----------
 
-		int i=0;
-		while(i<5)
-		{
-			System.out.println("Bateau selectionne : "+boats1[i].getNameOfBoat());
-			System.out.println("Veuillez saisir une colonne :");
-			int X = scan.nextInt();
+        System.out.println("Joueur 1 veuillez saisir vos bateaux");
 
-			while(X<0 || X>9){
-				System.out.println("Veuillez saisir une colonne valide:");
-				X = scan.nextInt();
-			}
-			System.out.println("Veuillez saisir une ligne :");
-			int Y = scan.nextInt();
+        int i = 0;
+        while (i < 5) {
+            System.out.printf("Bateau selectionne : %s%n", boats1[i].getNameOfBoat());
+            System.out.println("Veuillez saisir une colonne :");
+            int X = scan.nextInt();
 
-			while(Y<0 || Y>9){
-				System.out.println("Veuillez saisir une ligne valide:");
-				Y = scan.nextInt();
-			}
-			scan.nextLine();
-			System.out.println("Veuillez saisir une orientation (RIGHT, LEFT, TOP, BOTTOM) :");
-			String orientation= scan.nextLine();
+            while ((X < 0) || (X > 9)) {
+                System.out.println("Veuillez saisir une colonne valide:");
+                X = scan.nextInt();
+            }
+            System.out.println("Veuillez saisir une ligne :");
+            int Y = scan.nextInt();
 
-			while(Orientation.valueOf(orientation)!=RIGHT && Orientation.valueOf(orientation)!=LEFT && Orientation.valueOf(orientation)!=TOP && Orientation.valueOf(orientation)!=BOTTOM && Orientation.valueOf(orientation)!=NOTHING){
-				System.out.println("Veuillez saisir une orientation valide (RIGHT, LEFT, TOP, BOTTOM) :");
-				orientation= scan.nextLine();
-			}
+            while ((Y < 0) || (Y > 9)) {
+                System.out.println("Veuillez saisir une ligne valide:");
+                Y = scan.nextInt();
+            }
+            scan.nextLine();
+            System.out.println("Veuillez saisir une orientation (RIGHT, LEFT, TOP, BOTTOM) :");
+            String orientation = scan.nextLine();
 
-			try {
-				boatPositionPlayer1.putABoat(boats1[i], X, Y, Orientation.valueOf(orientation));
-				boatPositionPlayer1.displayBoard();
-				i++;
-			} 
-			catch (InvalidPositionException | OutOfRangeException e1) {
-				System.err.println(e1.getMessage());
-			} 
+            while ((Orientation.valueOf(orientation) != RIGHT) && (Orientation.valueOf(orientation) != LEFT) &&
+                   (Orientation.valueOf(orientation) != TOP) && (Orientation.valueOf(orientation) != BOTTOM) &&
+                   (Orientation.valueOf(orientation) != NOTHING)) {
+                System.out.println("Veuillez saisir une orientation valide (RIGHT, LEFT, TOP, BOTTOM) :");
+                orientation = scan.nextLine();
+            }
 
-		}
+            try {
+                boatPositionPlayer1.putABoat(boats1[i], X, Y, Orientation.valueOf(orientation));
+                boatPositionPlayer1.displayBoard();
+                i++;
+            }
+            catch (InvalidPositionException | OutOfRangeException e1) {
+                System.err.println(e1.getMessage());
+            }
+        }
 
-		// ---------- Joueur 2 pose ses bateaux ----------
-		i=0;
-		System.out.println("Joueur 2 veuillez saisir vos bateaux");
-		while(i<5)
-		{
-			System.out.println("Bateau selectionne : "+boats2[i].getNameOfBoat());
-			System.out.println("Veuillez saisir une colonne :");
-			int X = scan.nextInt();
-			while(X<0 || X>9){
-				System.out.println("Veuillez saisir une colonne valide:");
-				X = scan.nextInt();
-			}
-			System.out.println("Veuillez saisir une ligne :");
-			int Y = scan.nextInt();
-			while(Y<0 || Y>9){
-				System.out.println("Veuillez saisir une ligne valide:");
-				Y = scan.nextInt();
-			}
-			scan.nextLine();
-			System.out.println("Veuillez saisir une orientation (RIGHT, LEFT, TOP, BOTTOM) :");
-			String orientation= scan.nextLine();
+        // ---------- Joueur 2 pose ses bateaux ----------
+        i = 0;
+        System.out.println("Joueur 2 veuillez saisir vos bateaux");
+        while (i < 5) {
+            System.out.println("Bateau selectionne : " + boats2[i].getNameOfBoat());
+            System.out.println("Veuillez saisir une colonne :");
+            int X = scan.nextInt();
+            while (X < 0 || X > 9) {
+                System.out.println("Veuillez saisir une colonne valide:");
+                X = scan.nextInt();
+            }
+            System.out.println("Veuillez saisir une ligne :");
+            int Y = scan.nextInt();
+            while (Y < 0 || Y > 9) {
+                System.out.println("Veuillez saisir une ligne valide:");
+                Y = scan.nextInt();
+            }
+            scan.nextLine();
+            System.out.println("Veuillez saisir une orientation (RIGHT, LEFT, TOP, BOTTOM) :");
+            String orientation = scan.nextLine();
 
-			while(Orientation.valueOf(orientation)!=RIGHT && Orientation.valueOf(orientation)!=LEFT && Orientation.valueOf(orientation)!=TOP && Orientation.valueOf(orientation)!=BOTTOM && Orientation.valueOf(orientation)!=NOTHING){
-				System.out.println("Veuillez saisir une orientation valide (RIGHT, LEFT, TOP, BOTTOM) :");
-				orientation= scan.nextLine();
-			}
+            while (Orientation.valueOf(orientation) != RIGHT && Orientation.valueOf(orientation) != LEFT &&
+                   Orientation.valueOf(orientation) != TOP && Orientation.valueOf(orientation) != BOTTOM &&
+                   Orientation.valueOf(orientation) != NOTHING) {
+                System.out.println("Veuillez saisir une orientation valide (RIGHT, LEFT, TOP, BOTTOM) :");
+                orientation = scan.nextLine();
+            }
 
-			try {
-				boatPositionPlayer2.putABoat(boats2[i], X, Y, Orientation.valueOf(orientation));
-				boatPositionPlayer2.displayBoard();
-				i++;
-			} 
-			catch (InvalidPositionException | OutOfRangeException e1) {
-				System.err.println(e1.getMessage());
-			}
+            try {
+                boatPositionPlayer2.putABoat(boats2[i], X, Y, Orientation.valueOf(orientation));
+                boatPositionPlayer2.displayBoard();
+                i++;
+            }
+            catch (InvalidPositionException | OutOfRangeException e1) {
+                System.err.println(e1.getMessage());
+            }
+        }
 
-		}
+        System.out.println(" ");
+        System.out.println("La bataille va commencer");
+        System.out.println(" ");
 
-		System.out.println(" ");
-		System.out.println("La bataille va commencer");
-		System.out.println(" ");
+        while (true) {
+            // TODO Create a new private method to factorize all the processing for a given player
+            // ---------- Tour Joueur 1 ----------
+            tempPlayer = player1.getName();
 
+            System.out.printf("Coup joue %s%n", tempPlayer);
 
-		while(true)
-		{
-			// ---------- Tour Joueur 1 ----------
-			tempPlayer=player1.getName();
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.printf("%s Veuillez saisir une colonne : %n", tempPlayer);
+            int X = scan.nextInt();
+            System.out.println(" ");
+            System.out.printf("%s Veuillez saisir une ligne :%n", tempPlayer);
+            int Y = scan.nextInt();
+            System.out.println(" ");
 
-			System.out.println("Coup joue "+tempPlayer);
+            boatPositionPlayer2.takeAShot(X, Y, playedPositionPlayer1);
+            playedPositionPlayer1.displayBoard();
 
-			System.out.println(" ");
-			System.out.println(" ");
-			System.out.println(tempPlayer +" Veuillez saisir une colonne : ");
-			int X = scan.nextInt();
-			System.out.println(" ");
-			System.out.println(tempPlayer +" Veuillez saisir une ligne :");
-			int Y = scan.nextInt();
-			System.out.println(" ");
+            if (boatPositionPlayer2.takeAShot(X, Y, playedPositionPlayer1)) {
+                System.out.println("Touche");
+            }
+            else {
+                System.out.println("Loupe");
+            }
 
-			boatPositionPlayer2.takeAShot(X, Y, playedPositionPlayer1);
-			playedPositionPlayer1.displayBoard();
+            if (boatPositionPlayer2.victory()) {
+                break;
+            }
 
-			if(boatPositionPlayer2.takeAShot(X, Y, playedPositionPlayer1)==true){
-				System.out.println("Touche");
-			}
-			else{
-				System.out.println("Loupe");
-			}
+            tempPlayer = player2.getName();
 
-			if(boatPositionPlayer2.checkVitctory()==true)
-			{
-				break;
-			}
-			else
-			{
-				tempPlayer=player2.getName();
-			}
+            // ---------- Tour Joueur 2 ----------
 
+            System.out.printf("Coup joue %s%n", tempPlayer);
 
-			// ---------- Tour Joueur 2 ----------
+            System.out.println(" ");
+            System.out.println(" ");
 
-			System.out.println("Coup joue "+tempPlayer);
+            System.out.printf("%s Veuillez saisir une position X :%n", tempPlayer);
+            X = scan.nextInt();
+            System.out.println(" ");
+            System.out.printf("%s Veuillez saisir une position Y :%n", tempPlayer);
+            Y = scan.nextInt();
+            System.out.println(" ");
 
-			System.out.println(" ");
-			System.out.println(" ");
+            boatPositionPlayer1.takeAShot(X, Y, playedPositionPlayer2);
+            playedPositionPlayer1.displayBoard();
 
-			System.out.println(tempPlayer +" Veuillez saisir une position X :");
-			X = scan.nextInt();
-			System.out.println(" ");
-			System.out.println(tempPlayer +" Veuillez saisir une position Y :");
-			Y = scan.nextInt();
-			System.out.println(" ");
+            if (boatPositionPlayer2.takeAShot(X, Y, playedPositionPlayer1)) {
+                System.out.println("Touche");
+            }
+            else {
+                System.out.println("Loupe");
+            }
 
-			boatPositionPlayer1.takeAShot(X, Y, playedPositionPlayer2);
-			playedPositionPlayer1.displayBoard();
+            if (boatPositionPlayer1.victory()) {
+                break;
+            }
+            tempPlayer = player1.getName();
+        }
 
-			if(boatPositionPlayer2.takeAShot(X, Y, playedPositionPlayer1)==true){
-				System.out.println("Touche");
-			}
-			else{
-				System.out.println("Loupe");
-			}
-
-			if(boatPositionPlayer1.checkVitctory()==true)
-			{
-				break;
-			}
-			else
-			{
-				tempPlayer=player1.getName();
-			}
-		}
-
-		System.out.println("Victoire "+ tempPlayer);
-		scan.close();
-	}
+        System.out.printf("Victoire %s%n", tempPlayer);
+        scan.close();
+    }
 }
