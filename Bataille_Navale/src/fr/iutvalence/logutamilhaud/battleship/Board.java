@@ -69,22 +69,22 @@ public class Board
         
         
         if (grid[oX][oY] != EMPTY_SLOT) {
-            throw new InvalidPositionException("Position déja occupée");
+            throw new InvalidPositionException("Position dï¿½ja occupï¿½e");
         }
         
-        if(isInBoard(ship.size*dX + oX,ship.size*dY + oY)==false) {
-        	throw new OutOfRangeException("Le bateau dépasse de la grille");
+        if(!isInBoard((ship.size * dX) + oX, (ship.size * dY) + oY)) {
+        	throw new OutOfRangeException("Le bateau dï¿½passe de la grille");
         }
         
         
         for (int i = 0; i < ship.size; i++) {
-        	if (grid[oX + dX*i][oY + dY*i] != EMPTY_SLOT) {
+        	if (grid[oX + (dX * i)][oY + (dY * i)] != EMPTY_SLOT) {
         		throw new OutOfRangeException("Le bateau passe sur un autre bateau");
         	}
         }
         
         for (int j = 0; j < ship.size; j++) {
-		      grid[oX + dX*j][oY + dY*j] = ship.id;
+		      grid[oX + (dX * j)][oY + (dY * j)] = ship.id;
 		}
     }
 
