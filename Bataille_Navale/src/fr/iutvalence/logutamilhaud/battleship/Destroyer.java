@@ -1,6 +1,11 @@
 package fr.iutvalence.logutamilhaud.battleship;
-/*
- * Inherited class from Boat.
+
+// TODO see Cruiser
+/**
+ * TODO.
+ *
+ * @author TODO
+ * @version TODO
  */
 public class Destroyer extends Boat
 {
