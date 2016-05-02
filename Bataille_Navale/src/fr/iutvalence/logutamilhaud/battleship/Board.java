@@ -71,17 +71,17 @@ public class Board extends Exception
         
         
         if (grid[oX][oY] != EMPTY_SLOT) {
-            throw new InvalidPositionException();
+            throw new InvalidPositionException("Position déja occupée");
         }
         
         if(isInBoard(ship.size*dX + oX,ship.size*dY + oY)==false) {
-        	throw new OutOfRangeException();
+        	throw new OutOfRangeException("Le bateau dépasse de la grille");
         }
         
         
         for (int i = 0; i < ship.size; i++) {
         	if (grid[oX + dX*i][oY + dY*i] != EMPTY_SLOT) {
-        		throw new OutOfRangeException();
+        		throw new OutOfRangeException("Le bateau passe sur un autre bateau");
         	}
         }
         
