@@ -61,9 +61,9 @@ public class Board
      */
     public void putABoat(Boat ship, int oX, int oY, Orientation ori) throws InvalidPositionException, OutOfRangeException 
     {
-    	/** delta of shift in x */
+    	/* delta of shift in x */
         int dX = ori.dX();
-        /** delta of shift in y */
+        /* delta of shift in y */
         int dY = ori.dY();
         
         
