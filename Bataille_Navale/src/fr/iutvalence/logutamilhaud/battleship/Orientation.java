@@ -1,33 +1,33 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * TODO.
+ * Enumeration who manage the orientation of the boat.
  *
- * @author TODO
- * @version TODO
+ * @author amilhaud
+ * @version final
  */
 public enum Orientation
 {
-	/** TODO. */
+	/** Delta for right. */
 	RIGHT(1,0),
-	/** TODO. */
+	/** Delta for left. */
 	LEFT(-1,0),
-	/** TODO. */
+	/** Delta for top. */
 	TOP(0,-1),
-	/** TODO. */
+	/** Delta for bottom. */
 	BOTTOM(0,1),
-	/** TODO. */
+	/** Delta for nothing (for submarine. */
 	NOTHING(0,0);
 
-	/** TODO. */
+	/** Attribute for X. */
 	private final int deltaX;
-	/** TODO. */
+	/** Attribute for Y. */
 	private final int deltaY;
 
-	/** TODO.
+	/** Constructor.
 	 *
-	 * @param deltaX TODO
-	 * @param deltaY TODO
+	 * @param deltaX value in X.
+	 * @param deltaY value in Y.
      */
 	Orientation(int deltaX, int deltaY)
 	{
@@ -35,13 +35,13 @@ public enum Orientation
 		this.deltaY = deltaY;
 	}
 
-    /** TODO. */
+    /** Getter of dX value. */
 	public int dX()
 	{
 		return deltaX;
 	}
 
-    /** TODO. */
+    /** Getter of dY value. */
 	public int dY()
 	{
 		return deltaY;

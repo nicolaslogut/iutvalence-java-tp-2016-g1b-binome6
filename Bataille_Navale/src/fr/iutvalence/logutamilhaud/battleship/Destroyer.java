@@ -1,32 +1,27 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
-// TODO see Cruiser
 /**
- * TODO.
+ * Heritate from boat, a different boat.
  *
- * @author TODO
- * @version TODO
+ * @author Amilhaud
+ * @version final
  */
 public class Destroyer extends Boat
 {
-	/** constant which set the size of the boat. */
-	private final static int SIZE=3;
-	/**
-	 * Constructor
-	 */
-	public Destroyer()
-	{
-		this.size=SIZE;
-		this.id='D';
-		this.nameOfBoat="Destroyer";
+    /** Constant which set the size of the boat. */
+    private static final int SIZE = 3;
+    /** Constant which represent the boat on the board. */
+    private static final char ID = 'D';
+    /** Name of the boat. */
+    private final static String NAME_OF_THE_BOAT = "Destroyer";
+    
+    
+    /**
+     * Constructor
+     */
+    public Destroyer() {
+		super(SIZE, ID, NAME_OF_THE_BOAT);
 	}
-	/**
-	 * Get size of the boat.
-	 * @return size
-	 */
-	public int getSize()
-	{
-		return this.size;
-	}
+
 
 }

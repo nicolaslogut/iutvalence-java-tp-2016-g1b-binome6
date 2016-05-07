@@ -1,7 +1,7 @@
 /**
- * TODO.
+ * Package of the game (Battleship).
  *
- * @author TODO
- * @version TODO
+ * @author Amilhaud
+ * @version final
  */
 package fr.iutvalence.logutamilhaud.battleship;

@@ -1,5 +1,6 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
+
 // TODO public?
 /**
  * Board of the game.
@@ -62,18 +63,19 @@ public class Board
      */
     public void putABoat(Boat ship, int oX, int oY, Orientation ori) throws InvalidPositionException, OutOfRangeException 
     {
-    	/* delta of shift in x */
+    	
+    	/** delta of shift in x */
         int dX = ori.dX();
-        /* delta of shift in y */
+        /** delta of shift in y */
         int dY = ori.dY();
         
         
         if (grid[oX][oY] != EMPTY_SLOT) {
-            throw new InvalidPositionException("Position dï¿½ja occupï¿½e");
+            throw new InvalidPositionException("Position déja occupée");
         }
         
         if(!isInBoard((ship.size * dX) + oX, (ship.size * dY) + oY)) {
-        	throw new OutOfRangeException("Le bateau dï¿½passe de la grille");
+        	throw new OutOfRangeException("Le bateau dépasse de la grille");
         }
         
         
@@ -88,6 +90,7 @@ public class Board
 		}
     }
 
+    
     // TODO You should use toString() rather than displayBoard()
     /**
      * Display the board on the console.
@@ -103,7 +106,6 @@ public class Board
     		System.out.print("\n"); 
     	}
     }
-
     /**
      * Shot a fire in the boats board.*
      * 
@@ -112,12 +114,15 @@ public class Board
      * @param displayBoard board where the shot is display
      * @return boolean true if there's a boat, false if not
      */
-    public boolean takeAShot(int X, int Y, Board displayBoard)
+    public boolean takeAShot(int X, int Y, Board displayBoard) throws OccuppedPosition
     {
-        if (grid[X][Y] == EMPTY_SLOT) {
+    	if(displayBoard.grid[X][Y]==MISS){
+        	throw new OccuppedPosition("You already shot this cell");
+        }
+    	if (grid[X][Y] == EMPTY_SLOT) {
             displayBoard.grid[X][Y] = MISS;
         }
-        else {
+        if(grid[X][Y]!=EMPTY_SLOT) {
             grid[X][Y] = BOAT_SHOT;
             displayBoard.grid[X][Y] = BOAT_SHOT;
             return true;
@@ -129,7 +134,7 @@ public class Board
      * Check if a player win.
      * @return true if someone win, false if not.
      */
-    public boolean victory()
+    public boolean checkVictory()
     {
     	for(int i=0;i<NB_LINE;i++)
     	{

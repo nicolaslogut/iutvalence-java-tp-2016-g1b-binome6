@@ -1,31 +1,25 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
-// TODO see Cruiser
 /**
- * TODO.
+ * Heritate from boat, a different boat.
  *
- * @author TODO
- * @version TODO
+ * @author Amilhaud
+ * @version final
  */
 public class Submarine extends Boat {
-    /** constant which set the life and the size (which are equal) of the boat. */
-    private final static int SIZE = 1;
-
+   
+	
+    /** Constant which set the size of the boat. */
+    private static final int SIZE = 1;
+    /** Constant which represent the boat on the board. */
+    private static final char ID = 'S';
+    /** Name of the boat. */
+    private final static String NAME_OF_THE_BOAT = "Submarine";
+    
     /**
      * Constructor
      */
     public Submarine() {
-        this.size = SIZE;
-        this.id = 'S';
-        this.nameOfBoat = "Submarine";
-    }
-
-    /**
-     * Get size of the boat.
-     *
-     * @return size
-     */
-    public int getSize() {
-        return this.size;
-    }
+		super(SIZE, ID, NAME_OF_THE_BOAT);
+	}
 }

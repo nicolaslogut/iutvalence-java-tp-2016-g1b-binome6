@@ -1,33 +1,24 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
 /**
- * TODO.
+ * Heritate from boat, a different boat.
  *
- * @author TODO
- * @version TODO
+ * @author Amilhaud
+ * @version final
  */
 public class Cruiser extends Boat {
 
     /** Constant which set the size of the boat. */
     private static final int SIZE = 2;
-
-    // TODO Create a constructor in Boat and call it from the subclasses.
+    /** Constant which represent the boat on the board. */
+    private static final char ID = 'C';
+    /** Name of the boat. */
+    private final static String NAME_OF_THE_BOAT = "Cruiser";
+	 
     /**
      * Constructor
      */
     public Cruiser() {
-        size = SIZE;
-        id = 'C';
-        nameOfBoat = "Cruiser";
-    }
-
-    // TODO Why is it in this class and not in Boat?
-    /**
-     * Get size of the boat.
-     *
-     * @return size
-     */
-    public int getSize() {
-        return size;
-    }
+		super(SIZE, ID, NAME_OF_THE_BOAT);
+	}
 }

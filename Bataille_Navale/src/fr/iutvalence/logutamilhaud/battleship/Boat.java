@@ -10,13 +10,38 @@ package fr.iutvalence.logutamilhaud.battleship;
 abstract class Boat {
     /** Size of the boat. */
     protected int    size;
-    /* TODO This isn't indicated by the class? */
-    /** The id of boat(destoyer ("d"), boat("b"), ..... */
-    protected char   id;
+    /** The id of boat(destoyer ("d"), boat("b"), the symbol who gonna be on the board. */
+    protected char id;
     /** Name of the boat. */
     protected String nameOfBoat;
 
+    public Boat(int size, char id, String name){
+        this.size = size;
+        this.id = id;
+        this.nameOfBoat = name;
+    }
+    /**
+     * Get the name of the boat.
+     * @return name of the boat
+     */
     public String getNameOfBoat() {
         return nameOfBoat;
     }
+    /**
+     * Get size of the boat.
+     *
+     * @return size
+     */
+	public int getSize() {
+		return size;
+	}
+	/**
+	 * Get id of the boat.
+	 * @return id
+	 */
+	public char getId() {
+		return id;
+	}
+
+    
 }

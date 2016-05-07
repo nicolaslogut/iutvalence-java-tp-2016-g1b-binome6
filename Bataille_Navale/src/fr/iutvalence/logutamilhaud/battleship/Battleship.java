@@ -1,9 +1,11 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
+import java.util.Scanner;
+
 /**
- * Main of the application..
+ * Main of the application.
  * @author logut
- * @version 25/03
+ * @version 06/05
  */
 public class Battleship 
 {
@@ -13,8 +15,15 @@ public class Battleship
      * @param args Useless
      */
     public static void main(String[] args) {
-        // TODO Names should be provided by the players.
-        Game game = new Game("Joueur 1", "Joueur 2");
+    	Scanner scan = new Scanner(System.in);
+    	
+    	System.out.println("Please choose a name :");
+    	String name1 = scan.nextLine();
+    	System.out.println("Please choose a name :");
+    	String name2 = scan.nextLine();
+
+        Game game = new Game(name1, name2);
         game.run();
+        scan.close();
     }
 }
