@@ -1,4 +1,4 @@
-package fr.iutvalence.logutamilhaud.battleship;
+package fr.iutvalence.logutamilhaud.battleship.boats;
 
 /**
  * Heritate from boat, a different boat.

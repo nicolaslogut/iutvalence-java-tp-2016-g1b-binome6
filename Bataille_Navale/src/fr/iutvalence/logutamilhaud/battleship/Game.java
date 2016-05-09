@@ -1,6 +1,9 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
-
+import fr.iutvalence.logutamilhaud.battleship.boats.Boat;
+import fr.iutvalence.logutamilhaud.battleship.boats.Cruiser;
+import fr.iutvalence.logutamilhaud.battleship.boats.Destroyer;
+import fr.iutvalence.logutamilhaud.battleship.boats.Submarine;
 
 /**
  * Game of battleship.
@@ -9,10 +12,8 @@ package fr.iutvalence.logutamilhaud.battleship;
  * @version 25/03
  */
 public class Game {
-    // TODO final?
     /** First player. */
     private final Player player1;
-    // TODO final?
     /** Second player. */
     private final Player player2;
     /** Grid of shot fired by player1. */

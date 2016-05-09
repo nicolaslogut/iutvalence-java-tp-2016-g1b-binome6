@@ -1,4 +1,4 @@
-package fr.iutvalence.logutamilhaud.battleship;
+package fr.iutvalence.logutamilhaud.battleship.boats;
 
 // TODO Create a dedicated package for the boats
 /**
@@ -7,13 +7,13 @@ package fr.iutvalence.logutamilhaud.battleship;
  * @author logut
  * @version 25/03
  */
-abstract class Boat {
+public abstract class Boat {
     /** Size of the boat. */
-    protected int    size;
+    public int    size;
     /** The id of boat(destoyer ("d"), boat("b"), the symbol who gonna be on the board. */
-    protected char id;
+    public char id;
     /** Name of the boat. */
-    protected String nameOfBoat;
+    public String nameOfBoat;
 
     public Boat(int size, char id, String name){
         this.size = size;

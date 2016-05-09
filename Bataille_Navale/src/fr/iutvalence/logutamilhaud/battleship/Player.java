@@ -8,6 +8,8 @@ import static fr.iutvalence.logutamilhaud.battleship.Orientation.TOP;
 
 import java.util.Scanner;
 
+import fr.iutvalence.logutamilhaud.battleship.boats.Boat;
+
 /**
  * Player for the game.
  *
@@ -17,7 +19,9 @@ import java.util.Scanner;
 public class Player {
     /** Name of player. */
     private String name;
+    /** Scanner used */
     Scanner scan = new Scanner(System.in);
+    
     /**
      * Initialize the name of a player.
      *
@@ -48,7 +52,7 @@ public class Player {
         System.out.println(getName() + " please put your boat on the grid");
 
         int i = 0;
-        while (i < 1) {
+        while (i < 5) {
             System.out.printf("Boat select : " + boats[i].getNameOfBoat() + ". size : " +boats[i].getSize());
             System.out.println(" ");
             
@@ -81,12 +85,19 @@ public class Player {
             	boatPosition.displayBoard();
                 i++;
             }
-            catch (InvalidPositionException | OutOfRangeException e1) {
+            catch (InvalidPositionException e1) {
                 System.err.println(e1.getMessage());
+            }
+            catch(OutOfRangeException e1){
+            	System.err.println(e1.getMessage());
+            	System.out.println("Please try again"); // <- affichage en retard
+            	System.out.println(" ");
             }
         }
         
 	}
+	
+	
 	/**
 	 * A player play a turn.
 	 * @param boardShot The grid who is shot.
@@ -102,15 +113,20 @@ public class Player {
 			int Y = 0;
 			System.out.printf(" ");
 			System.out.printf("Coup joue " + getName() );
-	
-	        System.out.println(" ");
-	        System.out.println(" ");
-	        System.out.printf("Please choose a column : ");
-	        X = scan.nextInt();
-	        System.out.println(" ");
-	        System.out.printf("Please choose a line : ");
-	        Y = scan.nextInt();
-	        System.out.println(" ");
+			System.out.println(" ");
+			System.out.println("Please choose a column :");
+            X = scan.nextInt();
+            while ((X < 0) || (X > 9)) {
+                System.out.println("Please choose a valid column :");
+                X = scan.nextInt();
+            }
+            
+            System.out.println("Please choose a line :");
+            Y = scan.nextInt();
+            while ((Y < 0) || (Y > 9)) {
+                System.out.println("Please choose a valid line :");
+                Y = scan.nextInt();
+            }
 	
 	        try {
 				testShot = succeed(boardShot.takeAShot(X, Y, playedPosition));

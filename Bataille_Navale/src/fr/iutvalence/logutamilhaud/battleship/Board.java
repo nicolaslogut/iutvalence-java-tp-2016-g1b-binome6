@@ -1,5 +1,6 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
+import fr.iutvalence.logutamilhaud.battleship.boats.Boat;
 
 // TODO public?
 /**
@@ -38,16 +39,18 @@ public class Board
         }
     }
 
-    // TODO public?
     /**
      * Return if the point is in the board or not.
      * @param X the position in X
      * @param Y the position in
      * @return true is the point is in the board false if not.
      */
-    public boolean isInBoard(int X,int Y)
+    private boolean isInBoard(int X,int Y)
     {
-        return (X >= 0) && (X < NB_LINE) && (Y >= 0) && (Y < NB_LINE);
+        if((X >= 0) && (X < NB_LINE) && (Y >= 0) && (Y < NB_LINE)){
+        	return true;
+        }
+    	return false;
     }
     
     /**
@@ -71,17 +74,17 @@ public class Board
         
         
         if (grid[oX][oY] != EMPTY_SLOT) {
-            throw new InvalidPositionException("Position déja occupée");
+            throw new InvalidPositionException("Position already occuped");
         }
-        
-        if(!isInBoard((ship.size * dX) + oX, (ship.size * dY) + oY)) {
-        	throw new OutOfRangeException("Le bateau dépasse de la grille");
+        // TODO erreur placement bateau. TEST ->(1,1) TOP 
+        if(!isInBoard(((ship.size * dX) + oX), (ship.size * dY) + oY)) {
+        	throw new OutOfRangeException("The boat is over the grid");
         }
         
         
         for (int i = 0; i < ship.size; i++) {
         	if (grid[oX + (dX * i)][oY + (dY * i)] != EMPTY_SLOT) {
-        		throw new OutOfRangeException("Le bateau passe sur un autre bateau");
+        		throw new OutOfRangeException("Two boat can be on the same cell");
         	}
         }
         
