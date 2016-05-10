@@ -52,33 +52,52 @@ public class Player {
         System.out.println(getName() + " please put your boat on the grid");
 
         int i = 0;
+        int X=0,Y=0;
         while (i < 5) {
             System.out.printf("Boat select : " + boats[i].getNameOfBoat() + ". size : " +boats[i].getSize());
             System.out.println(" ");
-            
             System.out.println("Please choose a column :");
-            int X = scan.nextInt();
+            //int X = scan.nextInt();
+            try {
+				askValue(X);
+			} catch (NotAInteger e) {
+				
+			}
             while ((X < 0) || (X > 9)) {
                 System.out.println("Please choose a valid column :");
                 X = scan.nextInt();
             }
             
             System.out.println("Please choose a line :");
-            int Y = scan.nextInt();
+             Y = scan.nextInt();
+            
             while ((Y < 0) || (Y > 9)) {
                 System.out.println("Please choose a valid line :");
                 Y = scan.nextInt();
             }
             
             scan.nextLine();
-            System.out.println("Please choose a orientation (RIGHT, LEFT, TOP, BOTTOM, NOTHING) :");
+            System.out.println("Please choose a orientation (RIGHT, LEFT, TOP, BOTTOM): ");
             String orientation = scan.nextLine();
-
+            
+            
+            // TODO condition boucle
+            while(boats[i].getNameOfBoat()!="Submarine" && orientation=="NOTHING"){
+            	System.out.println("Please choose a valid orientation (RIGHT, LEFT, TOP, BOTTOM): ");
+                orientation = scan.nextLine();  
+            }
+            
             while ((Orientation.valueOf(orientation) != RIGHT) && (Orientation.valueOf(orientation) != LEFT) &&
                    (Orientation.valueOf(orientation) != TOP) && (Orientation.valueOf(orientation) != BOTTOM) &&
                    (Orientation.valueOf(orientation) != NOTHING)) {
-                System.out.println("Please choose a valid orientation (RIGHT, LEFT, TOP, BOTTOM, NOTHING) :");
+                System.out.println("Please choose a valid orientation (RIGHT, LEFT, TOP, BOTTOM):");
                 orientation = scan.nextLine();
+                
+                if(boats[i].getNameOfBoat()=="Submarine"){
+            		orientation="NOTHING";
+            	}
+                
+                
             }
             try {
             	boatPosition.putABoat(boats[i], X, Y, Orientation.valueOf(orientation));
@@ -90,14 +109,31 @@ public class Player {
             }
             catch(OutOfRangeException e1){
             	System.err.println(e1.getMessage());
-            	System.out.println("Please try again"); // <- affichage en retard
+            	System.out.println("Please try again");
             	System.out.println(" ");
             }
         }
         
 	}
+
+	private int askValue(int value) throws NotAInteger{
+		while(true){
+			try{
+				value = scan.nextInt();
+			}
+			catch(java.util.InputMismatchException e){
+				throw new NotAInteger("Please enter an Integer");
+			}
+			if(value>=0 || value <= 9){
+				break;
+			}
+		}
+		return value;
+			
+		
+	}
 	
-	
+
 	/**
 	 * A player play a turn.
 	 * @param boardShot The grid who is shot.

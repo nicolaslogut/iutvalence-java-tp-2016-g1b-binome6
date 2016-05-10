@@ -1,7 +1,6 @@
 package fr.iutvalence.logutamilhaud.battleship;
-
 import fr.iutvalence.logutamilhaud.battleship.boats.Boat;
-
+import static fr.iutvalence.logutamilhaud.battleship.Orientation.NOTHING;
 // TODO public?
 /**
  * Board of the game.
@@ -29,10 +28,10 @@ public class Board
     /** Initialize of the grid for the game. */
     public Board() 
     {
-        grid = new char[NB_LINE][NB_COLUMN];
-    	for (int i = 0; i < NB_LINE; i++) 
+        grid = new char[NB_COLUMN][NB_LINE];
+    	for (int i = 0; i < NB_COLUMN; i++) 
         {
-            for (int j = 0; j < NB_COLUMN; j++) 
+            for (int j = 0; j < NB_LINE; j++) 
             {
                 grid[i][j] = EMPTY_SLOT;
             }
@@ -42,12 +41,12 @@ public class Board
     /**
      * Return if the point is in the board or not.
      * @param X the position in X
-     * @param Y the position in
+     * @param Y the position in Y
      * @return true is the point is in the board false if not.
      */
     private boolean isInBoard(int X,int Y)
     {
-        if((X >= 0) && (X < NB_LINE) && (Y >= 0) && (Y < NB_LINE)){
+        if(((X >= 0) && (X < NB_COLUMN)) && ((Y >= 0) && (Y < NB_LINE))){
         	return true;
         }
     	return false;
@@ -72,15 +71,14 @@ public class Board
         /** delta of shift in y */
         int dY = ori.dY();
         
+        if(ship.getNameOfBoat()=="Submarine"){
+    		ori=NOTHING;
+    	}
+        
         
         if (grid[oX][oY] != EMPTY_SLOT) {
             throw new InvalidPositionException("Position already occuped");
-        }
-        // TODO erreur placement bateau. TEST ->(1,1) TOP 
-        if(!isInBoard(((ship.size * dX) + oX), (ship.size * dY) + oY)) {
-        	throw new OutOfRangeException("The boat is over the grid");
-        }
-        
+        }     
         
         for (int i = 0; i < ship.size; i++) {
         	if (grid[oX + (dX * i)][oY + (dY * i)] != EMPTY_SLOT) {
@@ -89,6 +87,9 @@ public class Board
         }
         
         for (int j = 0; j < ship.size; j++) {
+        	if(!isInBoard(oX + (dX * j),oY + (dY * j))){
+        		throw new OutOfRangeException("The boat is over the grid");
+        	}
 		      grid[oX + (dX * j)][oY + (dY * j)] = ship.id;
 		}
     }
