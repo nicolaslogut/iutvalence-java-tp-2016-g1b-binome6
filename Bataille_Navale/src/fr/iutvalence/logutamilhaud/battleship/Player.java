@@ -41,6 +41,28 @@ public class Player {
         return name;
     }
     
+    // TODO factoriser code avec methode ? probléme de try/catch (boucle infinie de gestion d'erreur) 
+	private int askValueInt(){
+		// java.util.InputMismatchException
+		int value=0;
+		
+		while(true){
+			
+		
+			try{
+				value=scan.nextInt();
+			}
+			catch(java.util.InputMismatchException e){
+				continue;
+			}
+		
+			if(value>=0 && value<=9){
+				return value;
+			}
+		}
+
+	}
+    
 	/**
 	 * A method to put all his boat for the player.
 	 * @param player the player who puts his boat
@@ -51,53 +73,31 @@ public class Player {
 
         System.out.println(getName() + " please put your boat on the grid");
 
-        int i = 0;
-        int X=0,Y=0;
+        int i = 0 ,X = 0, Y = 0;
+
         while (i < 5) {
             System.out.printf("Boat select : " + boats[i].getNameOfBoat() + ". size : " +boats[i].getSize());
             System.out.println(" ");
             System.out.println("Please choose a column :");
-            //int X = scan.nextInt();
-            try {
-				askValue(X);
-			} catch (NotAInteger e) {
-				
-			}
-            while ((X < 0) || (X > 9)) {
-                System.out.println("Please choose a valid column :");
-                X = scan.nextInt();
-            }
+            
+            X=askValueInt();
             
             System.out.println("Please choose a line :");
-             Y = scan.nextInt();
             
-            while ((Y < 0) || (Y > 9)) {
-                System.out.println("Please choose a valid line :");
-                Y = scan.nextInt();
-            }
+            Y=askValueInt();
+
             
             scan.nextLine();
             System.out.println("Please choose a orientation (RIGHT, LEFT, TOP, BOTTOM): ");
             String orientation = scan.nextLine();
-            
-            
-            // TODO condition boucle
-            while(boats[i].getNameOfBoat()!="Submarine" && orientation=="NOTHING"){
-            	System.out.println("Please choose a valid orientation (RIGHT, LEFT, TOP, BOTTOM): ");
-                orientation = scan.nextLine();  
-            }
+
             
             while ((Orientation.valueOf(orientation) != RIGHT) && (Orientation.valueOf(orientation) != LEFT) &&
                    (Orientation.valueOf(orientation) != TOP) && (Orientation.valueOf(orientation) != BOTTOM) &&
                    (Orientation.valueOf(orientation) != NOTHING)) {
                 System.out.println("Please choose a valid orientation (RIGHT, LEFT, TOP, BOTTOM):");
                 orientation = scan.nextLine();
-                
-                if(boats[i].getNameOfBoat()=="Submarine"){
-            		orientation="NOTHING";
-            	}
-                
-                
+
             }
             try {
             	boatPosition.putABoat(boats[i], X, Y, Orientation.valueOf(orientation));
@@ -115,24 +115,6 @@ public class Player {
         }
         
 	}
-
-	private int askValue(int value) throws NotAInteger{
-		while(true){
-			try{
-				value = scan.nextInt();
-			}
-			catch(java.util.InputMismatchException e){
-				throw new NotAInteger("Please enter an Integer");
-			}
-			if(value>=0 || value <= 9){
-				break;
-			}
-		}
-		return value;
-			
-		
-	}
-	
 
 	/**
 	 * A player play a turn.
@@ -181,10 +163,10 @@ public class Player {
 	
 	public String succeed(boolean testShot){
 		if (testShot) {
-            return "You got it !";
+            return "You got it my Captain !";
         }
         else {
-            return "You miss this one";
+            return "You miss this one Captain !";
         }
 	}
 }
