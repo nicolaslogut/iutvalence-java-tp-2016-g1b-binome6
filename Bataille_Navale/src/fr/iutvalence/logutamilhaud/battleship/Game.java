@@ -1,5 +1,14 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
+import static fr.iutvalence.logutamilhaud.battleship.Orientation.BOTTOM;
+import static fr.iutvalence.logutamilhaud.battleship.Orientation.LEFT;
+import static fr.iutvalence.logutamilhaud.battleship.Orientation.RIGHT;
+import static fr.iutvalence.logutamilhaud.battleship.Orientation.TOP;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import fr.iutvalence.logutamilhaud.battleship.boats.Boat;
 import fr.iutvalence.logutamilhaud.battleship.boats.Cruiser;
 import fr.iutvalence.logutamilhaud.battleship.boats.Destroyer;
@@ -43,14 +52,27 @@ public class Game {
 
     /** Start the game. */
     public void run() {
-        Boat[] boats1 = {new Cruiser(), new Cruiser(), new Submarine(), new Submarine(), new Destroyer()};
-        Boat[] boats2 = {new Cruiser(), new Cruiser(), new Submarine(), new Submarine(), new Destroyer()};
+    	
+    	List<Boat> boats1 = new ArrayList<Boat>();
+    	boats1.add(new Cruiser());
+    	boats1.add(new Cruiser());
+    	boats1.add(new Submarine());
+    	boats1.add(new Submarine());
+    	boats1.add(new Destroyer());
+    	
+    	List<Boat> boats2=new ArrayList<Boat>();
+    	boats2.add(new Cruiser());
+    	boats2.add(new Cruiser());
+    	boats2.add(new Submarine());
+    	boats2.add(new Submarine());
+    	boats2.add(new Destroyer());
+
 
         
         // ---------- Joueur 1 pose ses bateaux ----------
-        player1.playerPutABoat(boats1, boatPositionPlayer1);
+        playerPutABoat(boats1, boatPositionPlayer1, player1);
         // ---------- Joueur 2 pose ses bateaux ----------
-        player2.playerPutABoat(boats2, boatPositionPlayer2);
+        playerPutABoat(boats2, boatPositionPlayer2, player2);
 
         
         System.out.println(" ");
@@ -59,11 +81,11 @@ public class Game {
         
         String actualPlayer;
         while (true) {
-        	actualPlayer=player1.playATurn(boatPositionPlayer2, playedPositionPlayer1);
+        	actualPlayer=playATurn(boatPositionPlayer2, playedPositionPlayer1, player1);
         	if(boatPositionPlayer2.checkVictory()==true){
         		break;
         	}
-        	actualPlayer=player2.playATurn(boatPositionPlayer1, playedPositionPlayer2);
+        	actualPlayer=playATurn(boatPositionPlayer1, playedPositionPlayer2, player2);
         	if(boatPositionPlayer1.checkVictory()==true){
         		break;
         	}
@@ -71,4 +93,155 @@ public class Game {
         }
         System.out.printf("Victory " + actualPlayer);
     }
+    
+    private int askValueInt(String message){
+    	Scanner scan = new Scanner(System.in);
+		int value=-1;
+
+		while(value<0 || value>9){
+			System.out.println(message);
+			try{
+				value=scan.nextInt();
+			}
+			catch(java.util.InputMismatchException e){
+				System.err.println("Please type an integer");
+				scan.nextLine();
+			}
+		}
+		return value;
+	}
+    
+    private String askOrientation(){
+    	String orientation;
+    	Scanner scan = new Scanner(System.in);
+
+
+		while(true){
+			System.out.println("test");
+			orientation=scan.nextLine();
+			try{
+				Orientation.valueOf(orientation);
+			}
+			catch(java.util.IllegalArgumentException e){
+				System.err.println("Please choose an orientation");
+				scan.nextLine();
+			}
+			if(Orientation.valueOf(orientation)==RIGHT){
+				break;
+			}
+		}
+		return orientation;
+	}
+
+	/**
+	 * A method to put all his boat for the player.
+	 * @param player the player who puts his boat
+	 * @param boats	table of all the boat of the player
+	 * @param boatPosition the board where the boats are put
+	 */
+	public void playerPutABoat(List<Boat> boats, Board boatPosition, Player player){
+		Scanner scan = new Scanner(System.in);
+		System.out.printf("%s please put your boat on the grid", player.getName());
+		System.out.println(" ");
+		int X = 0, Y = 0;
+
+		for(Boat boat : boats) {
+			System.out.printf("Boat select: %s. Size: %s", boat.getNameOfBoat(), +boat.getSize());
+			System.out.println(" ");
+
+			X=askValueInt("Please choose a column: ");
+
+			System.out.println();
+
+			Y=askValueInt("Please choose a line: ");
+
+
+			scan.nextLine();
+			System.out.println("Please choose an orientation (RIGHT, LEFT, TOP, BOTTOM): ");
+			String orientation = scan.nextLine();
+
+			//TODO deal with error
+			try{
+				Orientation.valueOf(orientation);
+			}
+			catch(java.lang.IllegalArgumentException e1){
+				System.out.println("Please choose a correct orientation (RIGHT, LEFT, TOP, BOTTOM): ");
+				scan.nextLine();
+			}
+			
+			
+			try {
+				boatPosition.putABoat(boat, X, Y, Orientation.valueOf(orientation));
+			}
+			catch (InvalidPositionException e1) {
+				System.err.println(e1.getMessage());
+			}
+			catch(OutOfRangeException e1){
+				System.err.println(e1.getMessage());
+				System.out.println("Please try again");
+				System.out.println(" ");
+			}
+			
+			System.out.println(boatPosition);
+		}
+		scan.close();
+
+	}
+
+	/**
+	 * A player play a turn.
+	 * @param boardShot The grid who is shot.
+	 * @return the player who play the turn
+	 */
+	public String playATurn(Board boardShot, Board playedPosition, Player player){
+		
+		Scanner scan = new Scanner(System.in);
+		String testShot;
+
+		while(true){
+			int X = 0;
+			int Y = 0;
+			System.out.printf(" ");
+			System.out.printf("Coup joue %s", player.getName() );
+			System.out.println(" ");
+			System.out.println("Please choose a column :");
+			X = scan.nextInt();
+			while ((X < 0) || (X > 9)) {
+				System.out.println("Please choose a valid column :");
+				X = scan.nextInt();
+			}
+
+			System.out.println("Please choose a line :");
+			Y = scan.nextInt();
+			while ((Y < 0) || (Y > 9)) {
+				System.out.println("Please choose a valid line :");
+				Y = scan.nextInt();
+			}
+
+			try {
+				testShot = succeed(boardShot.takeAShot(X, Y, playedPosition));
+				System.out.println(playedPosition);
+				break;
+			} 
+			catch (OccuppedPosition e) {
+				System.err.println(e.getMessage());
+			}  
+		}
+
+		System.out.println(testShot);
+		scan.close();
+		return player.getName();
+		
+	}
+
+
+	public String succeed(boolean testShot){
+		if (testShot) {
+			return "You got it my Captain !";
+		}
+		else {
+			return "You miss this one Captain !";
+		}
+	}
+	
 }

@@ -17,9 +17,9 @@ public class Battleship
     public static void main(String[] args) {
     	Scanner scan = new Scanner(System.in);
     	
-    	System.out.println("Please choose a name :");
+    	System.out.print("Please choose a name: ");
     	String name1 = scan.nextLine();
-    	System.out.println("Please choose a name :");
+    	System.out.print("Please choose a name: ");
     	String name2 = scan.nextLine();
 
         Game game = new Game(name1, name2);

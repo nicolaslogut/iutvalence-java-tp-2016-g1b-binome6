@@ -1,6 +1,6 @@
 package fr.iutvalence.logutamilhaud.battleship.boats;
 
-// TODO Create a dedicated package for the boats
+
 /**
  * Boat of the game.
  *

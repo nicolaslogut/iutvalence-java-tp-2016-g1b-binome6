@@ -15,9 +15,7 @@ public enum Orientation
 	/** Delta for top. */
 	TOP(0,-1),
 	/** Delta for bottom. */
-	BOTTOM(0,1),
-	/** Delta for nothing (for submarine. */
-	NOTHING(0,0);
+	BOTTOM(0,1);
 
 	/** Attribute for X. */
 	private final int deltaX;

@@ -1,6 +1,5 @@
 package fr.iutvalence.logutamilhaud.battleship;
 import fr.iutvalence.logutamilhaud.battleship.boats.Boat;
-import static fr.iutvalence.logutamilhaud.battleship.Orientation.NOTHING;
 // TODO public?
 /**
  * Board of the game.
@@ -8,7 +7,7 @@ import static fr.iutvalence.logutamilhaud.battleship.Orientation.NOTHING;
  * @author logut
  * @version 25/03
  */
-public class Board
+final class Board
 {
     /** Number of line of the board. */
     private static final int  NB_LINE    = 10;
@@ -46,10 +45,7 @@ public class Board
      */
     private boolean isInBoard(int X,int Y)
     {
-        if(((X >= 0) && (X < NB_COLUMN)) && ((Y >= 0) && (Y < NB_LINE))){
-        	return true;
-        }
-    	return false;
+        return (((X >= 0) && (X < NB_COLUMN)) && ((Y >= 0) && (Y < NB_LINE)));
     }
     
     /**
@@ -71,10 +67,6 @@ public class Board
         /** delta of shift in y */
         int dY = ori.dY();
         
-        if(ship.getNameOfBoat()=="Submarine"){
-    		ori=NOTHING;
-    	}
-        
         
         if (grid[oX][oY] != EMPTY_SLOT) {
             throw new InvalidPositionException("Position already occuped");
@@ -95,7 +87,7 @@ public class Board
     }
 
     
-    // TODO You should use toString() rather than displayBoard()
+
     /**
      * Display the board on the console.
      */
@@ -109,6 +101,22 @@ public class Board
     		}
     		System.out.print("\n"); 
     	}
+    }
+    
+    @Override
+    public String toString() {
+    	StringBuilder representation = new StringBuilder(NB_LINE*(NB_COLUMN+1));
+    	
+    	for (int i = 0; i < NB_LINE; i++)
+    	{
+    		for (int j = 0; j < NB_COLUMN; j++)
+    		{
+    			representation.append(grid[j][i]);
+    		}
+    		representation.append("\n"); 
+    	}
+    	
+    	return representation.toString();
     }
     /**
      * Shot a fire in the boats board.*
