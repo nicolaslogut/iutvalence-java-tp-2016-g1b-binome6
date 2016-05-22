@@ -110,26 +110,27 @@ public class Game {
 		}
 		return value;
 	}
-    
+
     private String askOrientation(){
-    	String orientation;
+    	String orientation=null;
     	Scanner scan = new Scanner(System.in);
+    	System.out.println("Please choose an orientation (RIGHT, LEFT, TOP, BOTTOM");
 
 
-		while(true){
-			System.out.println("test");
-			orientation=scan.nextLine();
-			try{
-				Orientation.valueOf(orientation);
-			}
-			catch(java.util.IllegalArgumentException e){
-				System.err.println("Please choose an orientation");
-				scan.nextLine();
-			}
-			if(Orientation.valueOf(orientation)==RIGHT){
-				break;
-			}
-		}
+    		while(orientation!="RIGHT" || orientation!="LEFT" ||orientation!="TOP" ||orientation!="BOTTOM"){
+    			orientation=scan.nextLine();
+    			orientation.toUpperCase();
+
+    			try{
+    				Orientation.valueOf(orientation);
+    			}
+    			catch(java.lang.IllegalArgumentException e){
+    				System.err.println("Please choose an correct orientation");
+    				//scan.nextLine();
+    			}
+    		}
+
+		
 		return orientation;
 	}
 
@@ -141,9 +142,11 @@ public class Game {
 	 */
 	public void playerPutABoat(List<Boat> boats, Board boatPosition, Player player){
 		Scanner scan = new Scanner(System.in);
+		int X = 0, Y = 0;
+		String orientation;
 		System.out.printf("%s please put your boat on the grid", player.getName());
 		System.out.println(" ");
-		int X = 0, Y = 0;
+		
 
 		for(Boat boat : boats) {
 			System.out.printf("Boat select: %s. Size: %s", boat.getNameOfBoat(), +boat.getSize());
@@ -155,19 +158,7 @@ public class Game {
 
 			Y=askValueInt("Please choose a line: ");
 
-
-			scan.nextLine();
-			System.out.println("Please choose an orientation (RIGHT, LEFT, TOP, BOTTOM): ");
-			String orientation = scan.nextLine();
-
-			//TODO deal with error
-			try{
-				Orientation.valueOf(orientation);
-			}
-			catch(java.lang.IllegalArgumentException e1){
-				System.out.println("Please choose a correct orientation (RIGHT, LEFT, TOP, BOTTOM): ");
-				scan.nextLine();
-			}
+			orientation=askOrientation();
 			
 			
 			try {
