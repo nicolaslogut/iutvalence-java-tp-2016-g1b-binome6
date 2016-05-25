@@ -110,7 +110,11 @@ public class Game {
 		}
 		return value;
 	}
+
     // TODO fix method
+
+
+
     private String askOrientation(){
     	String orientation;
     	Scanner scan = new Scanner(System.in);
@@ -134,7 +138,7 @@ public class Game {
 				break;
 			}
 		}
-			
+
 		return orientation;
 	}
 
@@ -146,10 +150,10 @@ public class Game {
 	 */
 	public void playerPutABoat(List<Boat> boats, Board boatPosition, Player player){
 		Scanner scan = new Scanner(System.in);
-		System.out.printf("%s please put your boat on the grid", player.getName());
-		System.out.println(" ");
 		int X = 0, Y = 0;
 		String orientation;
+		System.out.printf("%s please put your boat on the grid", player.getName());
+		System.out.println(" ");
 
 		for(Boat boat : boats) {
 			System.out.printf("Boat select: %s. Size: %s", boat.getNameOfBoat(), +boat.getSize());
@@ -160,7 +164,8 @@ public class Game {
 			System.out.println();
 
 			Y=askValueInt("Please choose a line: ");
-			
+
+
 			// TODO fix method
 			orientation=askOrientation();
 
