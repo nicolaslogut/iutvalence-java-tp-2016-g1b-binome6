@@ -33,6 +33,8 @@ public class Game {
     private Board  playedPositionPlayer2;
     /** Grid of ship position of player2. */
     private Board  boatPositionPlayer2;
+    /** Number of turn played. */
+    public int nbTurnPlayed = 0;
 
 
     /**
@@ -203,23 +205,15 @@ public class Game {
 			System.out.printf(" ");
 			System.out.printf("Coup joue %s", player.getName() );
 			System.out.println(" ");
-			System.out.println("Please choose a column :");
-			X = scan.nextInt();
-			while ((X < 0) || (X > 9)) {
-				System.out.println("Please choose a valid column :");
-				X = scan.nextInt();
-			}
 
-			System.out.println("Please choose a line :");
-			Y = scan.nextInt();
-			while ((Y < 0) || (Y > 9)) {
-				System.out.println("Please choose a valid line :");
-				Y = scan.nextInt();
-			}
+			
+			X=askValueInt("Please choose a column");
+			Y=askValueInt("Please choose a line");
 
 			try {
 				testShot = succeed(boardShot.takeAShot(X, Y, playedPosition));
 				System.out.println(playedPosition);
+				nbTurnPlayed++;
 				break;
 			} 
 			catch (OccuppedPosition e) {
