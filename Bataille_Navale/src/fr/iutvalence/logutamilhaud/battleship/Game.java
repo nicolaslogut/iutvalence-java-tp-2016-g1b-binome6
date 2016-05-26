@@ -1,10 +1,5 @@
 package fr.iutvalence.logutamilhaud.battleship;
 
-import static fr.iutvalence.logutamilhaud.battleship.Orientation.BOTTOM;
-import static fr.iutvalence.logutamilhaud.battleship.Orientation.LEFT;
-import static fr.iutvalence.logutamilhaud.battleship.Orientation.RIGHT;
-import static fr.iutvalence.logutamilhaud.battleship.Orientation.TOP;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +8,9 @@ import fr.iutvalence.logutamilhaud.battleship.boats.Boat;
 import fr.iutvalence.logutamilhaud.battleship.boats.Cruiser;
 import fr.iutvalence.logutamilhaud.battleship.boats.Destroyer;
 import fr.iutvalence.logutamilhaud.battleship.boats.Submarine;
+import fr.iutvalence.logutamilhaud.battleship.exceptions.InvalidPositionException;
+import fr.iutvalence.logutamilhaud.battleship.exceptions.OccuppedPosition;
+import fr.iutvalence.logutamilhaud.battleship.exceptions.OutOfRangeException;
 
 /**
  * Game of battleship.
@@ -34,7 +32,7 @@ public class Game {
     /** Grid of ship position of player2. */
     private Board  boatPositionPlayer2;
     /** Number of turn played. */
-    public int nbTurnPlayed = 0;
+    public int nbTurnPlayed;
 
 
     /**
@@ -50,6 +48,7 @@ public class Game {
         playedPositionPlayer2 = new Board();
         boatPositionPlayer1 = new Board();
         boatPositionPlayer2 = new Board();
+        this.nbTurnPlayed = 0;
     }
 
     /** Start the game. */
@@ -97,7 +96,8 @@ public class Game {
     }
     
     private int askValueInt(String message){
-    	Scanner scan = new Scanner(System.in);
+    	@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
 		int value=-1;
 
 		while(value<0 || value>9){
@@ -113,13 +113,12 @@ public class Game {
 		return value;
 	}
 
-    // TODO fix method
-
 
 
     private String askOrientation(){
     	String orientation;
-    	Scanner scan = new Scanner(System.in);
+    	@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
     	
 		while(true){
 			System.out.print("Please choose an orientation (RIGHT, LEFT, TOP, BOTTOM): ");
@@ -131,12 +130,13 @@ public class Game {
 				Orientation.valueOf(orientation);
 			}
 			catch(java.lang.IllegalArgumentException e){
+
 				System.err.print("please choose a correct orientation");
 				System.err.print("");
 				continue;
 			}
-			if(Orientation.valueOf(orientation)==Orientation.RIGHT){
-				scan.close();
+			if(Orientation.valueOf(orientation)==Orientation.RIGHT ||Orientation.valueOf(orientation)==Orientation.TOP ||Orientation.valueOf(orientation)==Orientation.LEFT ||Orientation.valueOf(orientation)==Orientation.BOTTOM){
+
 				break;
 			}
 		}
@@ -162,25 +162,19 @@ public class Game {
 			System.out.println(" ");
 
 			X=askValueInt("Please choose a column: ");
-
-			System.out.println();
-
 			Y=askValueInt("Please choose a line: ");
-
-
-			// TODO fix method
 			orientation=askOrientation();
 
 			try {
 				boatPosition.putABoat(boat, X, Y, Orientation.valueOf(orientation));
 			}
-			catch (InvalidPositionException e1) {
-				System.err.println(e1.getMessage());
-			}
 			catch(OutOfRangeException e1){
 				System.err.println(e1.getMessage());
 				System.out.println("Please try again");
-				System.out.println(" ");
+				System.out.println(" ");	
+			}
+			catch (InvalidPositionException e1) {
+				System.err.println(e1.getMessage());
 			}
 			
 			System.out.println(boatPosition);
@@ -218,6 +212,7 @@ public class Game {
 			} 
 			catch (OccuppedPosition e) {
 				System.err.println(e.getMessage());
+
 			}  
 		}
 
@@ -227,7 +222,6 @@ public class Game {
 		
 	}
 
-
 	public String succeed(boolean testShot){
 		if (testShot) {
 			return "You got it my Captain !";
@@ -236,5 +230,28 @@ public class Game {
 			return "You miss this one Captain !";
 		}
 	}
+	
+	public void writeHighscore(){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -1,5 +1,8 @@
 package fr.iutvalence.logutamilhaud.battleship;
 import fr.iutvalence.logutamilhaud.battleship.boats.Boat;
+import fr.iutvalence.logutamilhaud.battleship.exceptions.InvalidPositionException;
+import fr.iutvalence.logutamilhaud.battleship.exceptions.OccuppedPosition;
+import fr.iutvalence.logutamilhaud.battleship.exceptions.OutOfRangeException;
 // TODO public?
 /**
  * Board of the game.
@@ -74,7 +77,7 @@ final class Board
         
         for (int i = 0; i < ship.size; i++) {
         	if (grid[oX + (dX * i)][oY + (dY * i)] != EMPTY_SLOT) {
-        		throw new OutOfRangeException("Two boat can be on the same cell");
+        		throw new InvalidPositionException("Two boat can be on the same cell");
         	}
         }
         
