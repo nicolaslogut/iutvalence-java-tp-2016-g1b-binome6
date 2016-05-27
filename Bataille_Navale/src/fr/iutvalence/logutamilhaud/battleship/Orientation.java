@@ -3,7 +3,7 @@ package fr.iutvalence.logutamilhaud.battleship;
 /**
  * Enumeration who manage the orientation of the boat.
  *
- * @author amilhaud
+ * @author Amilhaud
  * @version final
  */
 public enum Orientation

@@ -21,7 +21,6 @@ public class Player {
 		this.name = name;
 	}
 
-
 	/**
 	 * Get the name of the player.
 	 *
@@ -30,6 +29,4 @@ public class Player {
 	public String getName() {
 		return name;
 	}
-
-	
 }
